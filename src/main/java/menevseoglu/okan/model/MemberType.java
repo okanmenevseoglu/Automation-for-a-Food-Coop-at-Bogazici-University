@@ -1,12 +1,13 @@
 package menevseoglu.okan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
 /**
- * Entity representation of the member_type table that stores the type of the member.
+ * Entity representation of the member_type table that stores the types of the members.
  */
 @Entity
 @Data
@@ -16,9 +17,10 @@ public class MemberType {
     @GeneratedValue
     private short id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "memberType")
     private List<Member> memberList;
 }
