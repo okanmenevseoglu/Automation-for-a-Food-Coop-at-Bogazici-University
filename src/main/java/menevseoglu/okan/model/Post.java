@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Entity representation of the post table that stores the different types of pages depending on its type.
@@ -33,4 +34,7 @@ public class Post {
 
     @ManyToOne(optional = false)
     private PostType postType;
+
+    @OneToMany(mappedBy = "post")
+    private List<Photo> photoList;
 }

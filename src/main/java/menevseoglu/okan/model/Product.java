@@ -1,5 +1,6 @@
 package menevseoglu.okan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,24 +33,29 @@ public class Product {
     @Column(nullable = false)
     private float starRate;
 
-    @Column(columnDefinition = "VARCHAR(2083)")
-    private String imageURL;
-
+    @JsonIgnore
     @ManyToOne(optional = false)
     private Producer producer;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private UnitType unitType;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private PackageType packageType;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private ProductCategory productCategory;
 
     @OneToMany(mappedBy = "product")
+    private List<Photo> photoList;
+
+    @OneToMany(mappedBy = "product")
     private List<Comment> commentList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<SoldProduct> soldProductList;
 

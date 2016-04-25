@@ -1,6 +1,7 @@
 package menevseoglu.okan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Email;
@@ -32,7 +33,7 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false)
     private String password;
 
@@ -63,9 +64,10 @@ public class Member {
     @Column(nullable = false)
     private Timestamp registerTime;
 
-    @Column(columnDefinition = "VARCHAR(2083)")
-    private String photoURL;
+    @OneToOne
+    private Photo photo;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(optional = false)
     private MemberType memberType;
 

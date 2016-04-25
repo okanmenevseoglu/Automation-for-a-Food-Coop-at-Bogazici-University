@@ -35,9 +35,6 @@ public class Producer {
     @Email
     private String email;
 
-    @Column(columnDefinition = "VARCHAR(2083)")
-    private String photoURL;
-
     private float latitude;
 
     private float longitude;
@@ -46,4 +43,7 @@ public class Producer {
 
     @OneToMany(mappedBy = "producer")
     private List<Product> productList;
+
+    @OneToMany(mappedBy = "producer")
+    private List<Photo> photoList;
 }
