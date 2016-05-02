@@ -15,6 +15,7 @@ public class ProductCategoryImpl implements ProductCategoryService {
     @Autowired
     ProductCategoryRepository productCategoryRepository;
 
+
     @Override
     public void addNewProductCategory(ProductCategory productCategory) {
         productCategoryRepository.save(productCategory);

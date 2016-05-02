@@ -12,5 +12,4 @@ public interface MemberRepository extends CrudRepository<Member, Integer> {
     Member findByEmail(String email);
 
     void deleteByEmail(String email);
-
 }

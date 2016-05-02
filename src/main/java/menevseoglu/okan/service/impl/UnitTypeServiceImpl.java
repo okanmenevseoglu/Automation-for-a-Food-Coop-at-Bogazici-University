@@ -1,7 +1,56 @@
 package menevseoglu.okan.service.impl;
 
+import menevseoglu.okan.model.UnitType;
+import menevseoglu.okan.repository.UnitTypeRepository;
+import menevseoglu.okan.service.UnitTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
- * Created by okanm on 2.05.2016.
+ * This class is the business layer of the unit type operations.
  */
-public class UnitTypeServiceImpl {
+@Service
+@Transactional
+public class UnitTypeServiceImpl implements UnitTypeService {
+
+    @Autowired
+    UnitTypeRepository unitTypeRepository;
+
+    /**
+     * @return Iterable UnitType object
+     * @should get all the unit types
+     */
+    @Override
+    public Iterable<UnitType> getUnitTypes() {
+        return unitTypeRepository.findAll();
+    }
+
+    /**
+     * @param id of the unit type
+     * @return UnitType object with the given id
+     * @should get the unit type with given id
+     */
+    @Override
+    public UnitType getUnitType(short id) {
+        return unitTypeRepository.findOne(id);
+    }
+
+    /**
+     * @param unitType to be saved
+     * @should save the given unit type to the database
+     */
+    @Override
+    public void saveUnitType(UnitType unitType) {
+        unitTypeRepository.save(unitType);
+    }
+
+    /**
+     * @param id of the unit type that will be deleted
+     * @should delete the unit type with given id
+     */
+    @Override
+    public void deleteUnitType(short id) {
+        unitTypeRepository.delete(id);
+    }
 }

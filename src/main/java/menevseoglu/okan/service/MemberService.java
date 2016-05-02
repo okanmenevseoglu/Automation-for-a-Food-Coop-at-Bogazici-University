@@ -12,6 +12,7 @@ public interface MemberService extends UserDetailsService {
 
     Member findByEmail(String email);
 
+
     void addNewMember(Member member);
 
     Iterable<Member> findAllMembers();

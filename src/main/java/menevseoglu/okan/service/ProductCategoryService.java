@@ -7,4 +7,5 @@ import menevseoglu.okan.model.ProductCategory;
  */
 public interface ProductCategoryService {
     void addNewProductCategory(ProductCategory productCategory);
+
 }

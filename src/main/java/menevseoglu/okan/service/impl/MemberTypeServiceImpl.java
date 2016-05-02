@@ -2,7 +2,6 @@ package menevseoglu.okan.service.impl;
 
 import menevseoglu.okan.model.MemberType;
 import menevseoglu.okan.repository.MemberTypeRepository;
-import menevseoglu.okan.service.MemberService;
 import menevseoglu.okan.service.MemberTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

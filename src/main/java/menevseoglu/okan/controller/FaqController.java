@@ -1,7 +1,7 @@
 package menevseoglu.okan.controller;
 
 import menevseoglu.okan.model.Faq;
-import menevseoglu.okan.service.QandAService;
+import menevseoglu.okan.service.FaqService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +14,12 @@ import javax.validation.Valid;
  * Created by okanm on 29.04.2016.
  */
 @RestController
-public class QandAController {
+public class FaqController {
     @Autowired
-    QandAService qandAService;
+    FaqService faqService;
 
-    @RequestMapping(value = "/QandA/addNewQandA", method = RequestMethod.POST)
-    public void addNewQandA(@Valid @RequestBody Faq faq) {
-        qandAService.addNewQandA(faq);
+    @RequestMapping(value = "/Faq/add", method = RequestMethod.POST)
+    public void addFaq(@Valid @RequestBody Faq faq) {
+        faqService.saveFaq(faq);
     }
 }

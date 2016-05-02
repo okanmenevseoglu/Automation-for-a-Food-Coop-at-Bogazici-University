@@ -8,4 +8,5 @@ import menevseoglu.okan.model.Product;
 public interface ProductService {
     Iterable<Product> listAllProducts();
 
+
 }

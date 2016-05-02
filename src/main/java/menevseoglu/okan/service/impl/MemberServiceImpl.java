@@ -60,7 +60,6 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.delete(id);
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return null;
