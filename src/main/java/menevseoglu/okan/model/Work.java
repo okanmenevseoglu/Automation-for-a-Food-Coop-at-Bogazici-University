@@ -1,28 +1,38 @@
 package menevseoglu.okan.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
- * Entity representation of the work table that stores work information.
+ * Entity representation of the work table that stores volunteer work information.
  */
-@Entity
 @Data
+@Entity
 public class Work {
+
     @Id
     @GeneratedValue
     private int id;
 
+    @NotBlank
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @CreationTimestamp
     @Column(nullable = false)
-    private Date date;
+    private Timestamp dateOfCreation;
+
+    @Column(nullable = false)
+    private Date dateOfWork;
 
     @ManyToOne(optional = false)
     private WorkType workType;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Member member;
 }

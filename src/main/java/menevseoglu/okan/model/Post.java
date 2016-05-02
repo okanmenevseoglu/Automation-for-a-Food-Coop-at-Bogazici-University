@@ -1,6 +1,10 @@
 package menevseoglu.okan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,24 +12,28 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Entity representation of the post table that stores the different types of pages depending on its type.
- * Ex.: events, news etc.
+ * Entity representation of the post table that stores information of the different types of posts.
+ * Ex.: events, news, writings, etc.
  */
-@Entity
 @Data
+@Entity
 public class Post {
+
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(nullable = false)
+    @NotBlank
+    @Column(nullable = false, columnDefinition = "VARCHAR(2048)")
     private String title;
 
+    @NotBlank
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @CreationTimestamp
     @Column(nullable = false)
-    private Timestamp postTime;
+    private Timestamp dateOfCreation;
 
     private Date dateOfOccurence;
 
@@ -35,6 +43,7 @@ public class Post {
     @ManyToOne(optional = false)
     private PostType postType;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "post")
     private List<Photo> photoList;
 }

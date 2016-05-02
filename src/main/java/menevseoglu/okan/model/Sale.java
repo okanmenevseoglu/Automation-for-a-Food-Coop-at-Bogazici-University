@@ -10,9 +10,10 @@ import java.util.List;
 /**
  * Entity representation of the sale table that stores the sale information.
  */
-@Entity
 @Data
+@Entity
 public class Sale {
+
     @Id
     @GeneratedValue
     private int id;

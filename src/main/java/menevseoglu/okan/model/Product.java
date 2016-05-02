@@ -2,6 +2,7 @@ package menevseoglu.okan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,18 +10,21 @@ import java.util.List;
 /**
  * Entity representation of the product table that stores the products of the cooperative.
  */
-@Entity
 @Data
+@Entity
 public class Product {
+
     @Id
     @GeneratedValue
     private short id;
 
-    @Column(nullable = false)
+    @NotBlank
+    @Column(nullable = false, unique = true)
     private String name;
 
     private String description;
 
+    @NotBlank
     @Column(nullable = false)
     private float price;
 
@@ -33,19 +37,15 @@ public class Product {
     @Column(nullable = false)
     private float starRate;
 
-    @JsonIgnore
     @ManyToOne(optional = false)
     private Producer producer;
 
-    @JsonIgnore
     @ManyToOne(optional = false)
     private UnitType unitType;
 
-    @JsonIgnore
     @ManyToOne(optional = false)
     private PackageType packageType;
 
-    @JsonIgnore
     @ManyToOne(optional = false)
     private ProductCategory productCategory;
 
@@ -55,10 +55,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Comment> commentList;
 
+    @OneToMany(mappedBy = "product")
+    private List<StarRating> starRatingList;
+
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<SoldProduct> soldProductList;
-
-    @OneToMany(mappedBy = "product")
-    private List<StarRating> starRatingList;
 }

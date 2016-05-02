@@ -1,5 +1,7 @@
 package menevseoglu.okan.filter;
 
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -19,7 +21,7 @@ public class SimpleCORSFilter implements Filter {
     }
 
     /**
-     * This class adds appropriate header to resource object.
+     * This class adds appropriate header to the resource object.
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -31,7 +33,6 @@ public class SimpleCORSFilter implements Filter {
         res.setHeader("Access-Control-Max-Age", "3600");
         res.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token, Content-Type");
         res.addHeader("Access-Control-Expose-Headers", "x-auth-token");
-
 
         if (req.getMethod().equals("OPTIONS")) {
             res.setStatus(HttpServletResponse.SC_OK);

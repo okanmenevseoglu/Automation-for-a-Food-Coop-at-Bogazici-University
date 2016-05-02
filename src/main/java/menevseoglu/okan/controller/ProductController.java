@@ -19,11 +19,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public Iterable<Product> showAllProducts() {
-        return productService.findAllProducts();
+        return productService.listAllProducts();
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() {
-        return "YEAHH";
-    }
 }

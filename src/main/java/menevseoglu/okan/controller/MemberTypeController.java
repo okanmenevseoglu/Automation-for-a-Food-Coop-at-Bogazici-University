@@ -5,26 +5,35 @@ import menevseoglu.okan.service.MemberTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
- * Created by okanm on 21.04.2016.
+ * Controller class that handles request and response methods of the member type operations.
  */
 @RestController
+@RequestMapping("/memberTypes")
 public class MemberTypeController {
+
     @Autowired
     MemberTypeService memberTypeService;
 
-    @RequestMapping(value = "/memberTypes", method = RequestMethod.GET)
-    public Iterable<MemberType> showAllMemberTypes() {
-        return memberTypeService.findAll();
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
+    public Iterable<MemberType> getMemberTypes() {
+        return memberTypeService.getMemberTypes();
     }
 
-    @RequestMapping(value = "/memberTypes/{memberTypeName}", method = RequestMethod.GET)
-    public MemberType findMemberTypeByName(@PathVariable("memberTypeName") String name) {
-        return memberTypeService.findMemberTypeByName(name);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public MemberType getMemberType(@PathVariable("id") short id) {
+        return memberTypeService.getMemberType(id);
     }
 
-    @RequestMapping(value = "/memberTypes/addNewMemberType", method = RequestMethod.POST)
-    public void saveMemberType(@RequestBody MemberType memberType) {
-        memberTypeService.addNewMemberType(memberType);
+    @RequestMapping(value = "/addMemberType", method = RequestMethod.POST)
+    public void saveMemberType(@Valid @RequestBody MemberType memberType) {
+        memberTypeService.saveMemberType(memberType);
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public void deleteMemberType(@PathVariable("id") short id) {
+        memberTypeService.deleteMemberType(id);
     }
 }

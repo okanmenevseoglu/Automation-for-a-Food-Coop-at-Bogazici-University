@@ -1,11 +1,13 @@
 package menevseoglu.okan.controller;
 
 
+import menevseoglu.okan.exception.MemberNotFoundException;
 import menevseoglu.okan.model.Member;
 import menevseoglu.okan.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by okanm on 25.03.2016.
@@ -23,12 +25,19 @@ public class MemberController {
 
     @RequestMapping(value = "/members/{memberID}", method = RequestMethod.GET)
     public Member getMember(@PathVariable("memberID") int memberID) {
-        return memberService.findById(memberID);
+        Member member = memberService.findById(memberID);
+        if (member == null) throw new MemberNotFoundException();
+        return member;
     }
 
     @RequestMapping(value = "/members/register", method = RequestMethod.POST)
-    public void addNewMemberType(@RequestBody Member member) {
+    public void addNewMemberType(@Valid @RequestBody Member member) {
         System.out.println(member.toString());
         memberService.addNewMember(member);
+    }
+
+    @RequestMapping(value = "/members/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteBulletin(@Valid @PathVariable("id") short id) {
+        memberService.delete(id);
     }
 }

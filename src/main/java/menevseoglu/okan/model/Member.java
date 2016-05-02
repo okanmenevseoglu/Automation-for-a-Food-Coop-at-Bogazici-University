@@ -5,55 +5,64 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.sql.Date;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
 
 
 /**
  * Entity representation of the member table that stores information about the members of the cooperative.
  */
-@Entity
 @Data
-public class Member {
+@Entity
+public class Member implements UserDetails {
 
     @Id
     @GeneratedValue
     private int id;
 
+    @NotBlank
     @Column(nullable = false)
     private String firstName;
 
+    @NotBlank
     @Column(nullable = false)
     private String lastName;
 
-    @Email
+    @Email(regexp = "^[a-z0-9_\\.-]{1,}@(boun).(edu).(tr)$")
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotBlank
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private char gender;
 
+    @NotBlank
     @Column(nullable = false)
     private String idNumber;
 
-    @Column(nullable = false)
-    private Date dateOfBirth;
-
+    @NotBlank
     @Column(nullable = false)
     private String address;
 
+    @NotBlank
     @Column(nullable = false)
     private String city;
 
     private String postalCode;
 
+    @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
     @Column(nullable = false)
     private String phoneNumber;
 
@@ -67,19 +76,52 @@ public class Member {
     @OneToOne
     private Photo photo;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(optional = false)
     private MemberType memberType;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Sale> saleList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Comment> commentList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Post> postList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Work> workList;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

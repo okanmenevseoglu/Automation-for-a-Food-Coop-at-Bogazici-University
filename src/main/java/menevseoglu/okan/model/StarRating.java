@@ -1,16 +1,17 @@
 package menevseoglu.okan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Entity representation of the star_rating table that stores the information of a star rating of a related product.
  */
-@Entity
 @Data
+@Entity
 public class StarRating {
+
     @Id
     @GeneratedValue
     private int id;
@@ -18,9 +19,11 @@ public class StarRating {
     @Column(nullable = false)
     private float starRate;
 
+    @JsonIgnore
     @OneToOne(optional = false)
     private Product product;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private Member member;
 }

@@ -4,11 +4,13 @@ import menevseoglu.okan.model.Member;
 import menevseoglu.okan.repository.MemberRepository;
 import menevseoglu.okan.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by okanm on 20.04.2016.
+ * This class is the business layer of the member operations.
  */
 @Service
 @Transactional
@@ -53,4 +55,14 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.deleteByEmail(email);
     }
 
+    @Override
+    public void delete(int id) {
+        memberRepository.delete(id);
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return null;
+    }
 }

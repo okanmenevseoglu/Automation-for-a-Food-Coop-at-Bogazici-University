@@ -3,14 +3,15 @@ package menevseoglu.okan.service;
 import menevseoglu.okan.model.MemberType;
 
 /**
- * Created by okanm on 21.04.2016.
+ * This class is the abstract representation of the service layer for the member type operations.
  */
 public interface MemberTypeService {
-    void addNewMemberType(MemberType memberType);
 
-    MemberType findMemberTypeByName(String name);
+    Iterable<MemberType> getMemberTypes();
 
-    Iterable<MemberType> findAll();
+    MemberType getMemberType(short id);
 
-    void delete(MemberType memberType);
+    void saveMemberType(MemberType memberType);
+
+    void deleteMemberType(short id);
 }

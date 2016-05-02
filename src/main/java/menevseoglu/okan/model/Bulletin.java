@@ -1,6 +1,7 @@
 package menevseoglu.okan.model;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,21 +10,24 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 /**
- * Entity representation of the bulletin table that stores information about bulletins of the cooperative.
+ * Entity representation of the bulletin table that stores information about the bulletins of the cooperative.
  */
-@Entity
 @Data
+@Entity
 public class Bulletin {
+
     @Id
     @GeneratedValue
     private short id;
 
-    @Column(nullable = false)
+    @NotBlank
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
     private Date date;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(2083)")
-    private String bulletinURL;
+    @NotBlank
+    @Column(columnDefinition = "VARCHAR(2083)", nullable = false)
+    private String url;
 }

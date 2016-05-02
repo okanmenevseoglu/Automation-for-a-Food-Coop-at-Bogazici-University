@@ -1,26 +1,28 @@
 package menevseoglu.okan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
 
 /**
- * Entity representation of the product_category table that stores the category information of the products.
+ * Entity representation of the product_category table that stores the category information of a product.
  */
-@Entity
 @Data
+@Entity
 public class ProductCategory {
+
     @Id
     @GeneratedValue
     private short id;
 
-    @Column(nullable = false)
+    @NotBlank
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "parentProductCategory")
-    private List<ProductCategory> childrenCategoryList;
-
-    @ManyToOne
-    private ProductCategory parentProductCategory;
+    @JsonIgnore
+    @OneToMany(mappedBy = "productCategory")
+    private List<Product> productList;
 }

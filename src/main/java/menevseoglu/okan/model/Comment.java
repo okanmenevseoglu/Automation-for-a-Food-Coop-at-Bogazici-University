@@ -1,19 +1,22 @@
 package menevseoglu.okan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Entity representation of the comment table that stores the comments information about the related products.
+ * Entity representation of the comment table that stores the comments information of a product.
  */
-@Entity
 @Data
+@Entity
 public class Comment {
+
     @Id
     @GeneratedValue
     private int id;
@@ -23,6 +26,7 @@ public class Comment {
     @Email
     private String email;
 
+    @NotBlank
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
@@ -30,12 +34,14 @@ public class Comment {
     @Column(nullable = false)
     private Timestamp commentTime;
 
-    @ManyToOne(optional = false)
-    private Product product;
-
     @ManyToOne
     private Member member;
 
+    @JsonIgnore
+    @ManyToOne(optional = false)
+    private Product product;
+
+    @JsonIgnore
     @ManyToOne
     private Comment parentComment;
 
