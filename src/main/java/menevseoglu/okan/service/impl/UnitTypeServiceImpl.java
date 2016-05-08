@@ -19,7 +19,8 @@ public class UnitTypeServiceImpl implements UnitTypeService {
 
     /**
      * @return Iterable UnitType object
-     * @should get all the unit types
+     * @should invoke findAll method of unit type repository
+     * @should return what unit type repository returns
      */
     @Override
     public Iterable<UnitType> getUnitTypes() {
@@ -29,7 +30,8 @@ public class UnitTypeServiceImpl implements UnitTypeService {
     /**
      * @param id of the unit type
      * @return UnitType object with the given id
-     * @should get the unit type with given id
+     * @should invoke findOne method of unit type repository with given id
+     * @should return what unit type repository returns
      */
     @Override
     public UnitType getUnitType(short id) {
@@ -38,7 +40,7 @@ public class UnitTypeServiceImpl implements UnitTypeService {
 
     /**
      * @param unitType to be saved
-     * @should save the given unit type to the database
+     * @should invoke save method of unit type repository
      */
     @Override
     public void saveUnitType(UnitType unitType) {
@@ -47,7 +49,7 @@ public class UnitTypeServiceImpl implements UnitTypeService {
 
     /**
      * @param id of the unit type that will be deleted
-     * @should delete the unit type with given id
+     * @should invoke delete method of unit type repository with given id
      */
     @Override
     public void deleteUnitType(short id) {
