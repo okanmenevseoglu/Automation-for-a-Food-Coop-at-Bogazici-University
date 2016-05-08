@@ -19,7 +19,8 @@ public class BulletinServiceImpl implements BulletinService {
 
     /**
      * @return Iterable Bulletin object
-     * @should get all the bulletins
+     * @should invoke findAll method of bulletin repository
+     * @should return what bulletin repository returns
      */
     @Override
     public Iterable<Bulletin> getBulletins() {
@@ -29,7 +30,8 @@ public class BulletinServiceImpl implements BulletinService {
     /**
      * @param id of the bulletin
      * @return Bulletin object with the given id
-     * @should get the bulletin with given id
+     * @should invoke findOne method of bulletin repository with given id
+     * @should return what bulletin repository returns
      */
     @Override
     public Bulletin getBulletin(short id) {
@@ -38,7 +40,7 @@ public class BulletinServiceImpl implements BulletinService {
 
     /**
      * @param bulletin to be saved
-     * @should save the given bulletin to the database
+     * @should invoke save method of bulletin repository
      */
     @Override
     public void saveBulletin(Bulletin bulletin) {
@@ -48,7 +50,8 @@ public class BulletinServiceImpl implements BulletinService {
     /**
      * @param id          of the bulletin that will be updated
      * @param newBulletin to represent new values
-     * @should update the bulletin with given id
+     * @should invoke save method of bulletin repository with given id and new bulletin data
+     * @should invoke save method of bulletin repository even if at least one data is null
      */
     @Override
     public void updateBulletin(short id, Bulletin newBulletin) {
@@ -64,12 +67,10 @@ public class BulletinServiceImpl implements BulletinService {
 
     /**
      * @param id of the bulletin that will be deleted
-     * @should delete the bulletin with given id
+     * @should invoke delete method of bulletin repository with given id
      */
     @Override
     public void deleteBulletin(short id) {
         bulletinRepository.delete(id);
     }
-
-
 }
