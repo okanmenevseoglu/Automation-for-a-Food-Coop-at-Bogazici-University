@@ -19,17 +19,19 @@ public class WorkTypeServiceImpl implements WorkTypeService {
 
     /**
      * @return Iterable WorkType object
-     * @should get all the work types
+     * @should invoke findAll method of work type repository
+     * @should return what work type repository returns
      */
     @Override
-    public Iterable<WorkType> getWorkypes() {
+    public Iterable<WorkType> getWorkTypes() {
         return workTypeRepository.findAll();
     }
 
     /**
      * @param id of the work type
      * @return WorkType object with the given id
-     * @should get the work type with given id
+     * @should invoke findOne method of work type repository with given id
+     * @should return what work type repository returns
      */
     @Override
     public WorkType getWorkType(short id) {
@@ -38,7 +40,7 @@ public class WorkTypeServiceImpl implements WorkTypeService {
 
     /**
      * @param workType to be saved
-     * @should save the given work type to the database
+     * @should invoke save method of work type repository
      */
     @Override
     public void saveWorkType(WorkType workType) {
@@ -47,7 +49,7 @@ public class WorkTypeServiceImpl implements WorkTypeService {
 
     /**
      * @param id of the work type that will be deleted
-     * @should delete the work type with given id
+     * @should invoke delete method of work type repository with given id
      */
     @Override
     public void deleteWorkType(short id) {

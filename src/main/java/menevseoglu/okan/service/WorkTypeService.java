@@ -7,7 +7,7 @@ import menevseoglu.okan.model.WorkType;
  */
 public interface WorkTypeService {
 
-    Iterable<WorkType> getWorkypes();
+    Iterable<WorkType> getWorkTypes();
 
     WorkType getWorkType(short id);
 
