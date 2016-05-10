@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -21,18 +21,18 @@ public class PostTypeServiceImplTest {
     @Mock
     PostTypeRepository postTypeRepository;
 
+    @Mock
+    private ArrayList<PostType> postTypeList;
+
+    @Mock
+    private PostType postType;
+
     @InjectMocks
     PostTypeServiceImpl postTypeService;
-
-    private List<PostType> postTypeList;
-
-    private PostType postType;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        postTypeList = mock(List.class);
-        postType = mock(PostType.class);
     }
 
     /**

@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -24,15 +24,15 @@ public class WorkTypeServiceImplTest {
     @InjectMocks
     WorkTypeServiceImpl workTypeService;
 
-    private List<WorkType> workTypeList;
+    @Mock
+    private ArrayList<WorkType> workTypeList;
 
+    @Mock
     private WorkType workType;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        workTypeList = mock(List.class);
-        workType = mock(WorkType.class);
     }
 
     /**

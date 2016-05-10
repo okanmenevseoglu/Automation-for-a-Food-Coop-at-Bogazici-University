@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -21,18 +21,18 @@ public class UnitTypeServiceImplTest {
     @Mock
     UnitTypeRepository unitTypeRepository;
 
+    @Mock
+    private ArrayList<UnitType> unitTypeList;
+
+    @Mock
+    private UnitType unitType;
+
     @InjectMocks
     UnitTypeServiceImpl unitTypeService;
-
-    private List<UnitType> unitTypeList;
-
-    private UnitType unitType;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        unitTypeList = mock(List.class);
-        unitType = mock(UnitType.class);
     }
 
     /**
