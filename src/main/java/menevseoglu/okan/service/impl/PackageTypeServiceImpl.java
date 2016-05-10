@@ -19,7 +19,8 @@ public class PackageTypeServiceImpl implements PackageTypeService {
 
     /**
      * @return Iterable PackageType object
-     * @should get all the package types
+     * @should invoke findAll method of package type repository
+     * @should return what package type repository returns
      */
     @Override
     public Iterable<PackageType> getPackageTypes() {
@@ -29,7 +30,8 @@ public class PackageTypeServiceImpl implements PackageTypeService {
     /**
      * @param id of the package type
      * @return PackageType object with the given id
-     * @should get the package type with given id
+     * @should invoke findOne method of package type repository with given id
+     * @should return what package type repository returns
      */
     @Override
     public PackageType getPackageType(short id) {
@@ -38,7 +40,7 @@ public class PackageTypeServiceImpl implements PackageTypeService {
 
     /**
      * @param packageType to be saved
-     * @should save the given package type to the database
+     * @should invoke save method of package type repository
      */
     @Override
     public void savePackageType(PackageType packageType) {
@@ -47,7 +49,7 @@ public class PackageTypeServiceImpl implements PackageTypeService {
 
     /**
      * @param id of the package type that will be deleted
-     * @should delete the package type with given id
+     * @should invoke delete method of package type repository with given id
      */
     @Override
     public void deletePackageType(short id) {
