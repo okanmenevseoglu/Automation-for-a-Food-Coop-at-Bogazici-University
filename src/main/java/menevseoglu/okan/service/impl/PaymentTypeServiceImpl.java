@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+
 /**
  * This class is the business layer of the payment type operations.
  */
@@ -19,7 +21,8 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
 
     /**
      * @return Iterable PaymentType object
-     * @should get all the payment types
+     * @should invoke findAll method of payment type repository
+     * @should return what payment type repository returns
      */
     @Override
     public Iterable<PaymentType> getPaymentTypes() {
@@ -29,7 +32,8 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     /**
      * @param id of the payment type
      * @return PaymentType object with the given id
-     * @should get the payment type with given id
+     * @should invoke findOne method of payment type repository with given id
+     * @should return what payment type repository returns
      */
     @Override
     public PaymentType getPaymentType(short id) {
@@ -38,7 +42,7 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
 
     /**
      * @param paymentType to be saved
-     * @should save the given payment type to the database
+     * @should invoke save method of payment type repository
      */
     @Override
     public void savePaymentType(PaymentType paymentType) {
@@ -47,10 +51,16 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
 
     /**
      * @param id of the payment type that will be deleted
-     * @should delete the payment type with given id
+     * @should invoke delete method of payment type repository with given id
      */
     @Override
     public void deletePaymentType(short id) {
-        paymentTypeRepository.delete(id);
+        PaymentType paymentType = paymentTypeRepository.findOne(id);
+        if (paymentType == null)
+            throw new EntityNotFoundException("Böyle bir ödeme tipi bulunamadı.");
+        if (!(paymentType.getName().equalsIgnoreCase("nakit") || paymentType.getName().equalsIgnoreCase("kredi kartı")))
+            paymentTypeRepository.delete(id);
+        else
+            throw new RuntimeException("Bu ödeme tipi silinemez!: " + paymentType.getName());
     }
 }
