@@ -1,6 +1,6 @@
 package menevseoglu.okan.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -22,7 +22,7 @@ public class ProductCategory {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToMany(mappedBy = "productCategory")
     private List<Product> productList;
 }

@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductCategoryRepository extends CrudRepository<ProductCategory, Short> {
 
+    ProductCategory findByName(String name);
+
+    void deleteByName(String name);
 }
