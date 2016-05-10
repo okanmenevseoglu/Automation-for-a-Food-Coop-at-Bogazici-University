@@ -32,13 +32,13 @@ public class BulletinController {
         bulletinService.saveBulletin(bulletin);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void deleteBulletin(@Valid @PathVariable("id") short id) {
-        bulletinService.deleteBulletin(id);
-    }
-
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public void updateBulletin(@PathVariable("id") short id, @RequestBody Bulletin newBulletin) {
         bulletinService.updateBulletin(id, newBulletin);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteBulletin(@PathVariable("id") short id) {
+        bulletinService.deleteBulletin(id);
     }
 }
