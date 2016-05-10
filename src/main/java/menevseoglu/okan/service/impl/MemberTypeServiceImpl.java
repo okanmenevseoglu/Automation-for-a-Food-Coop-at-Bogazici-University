@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+
 /**
  * This class is the business layer of the member type operations.
  */
@@ -19,7 +21,8 @@ public class MemberTypeServiceImpl implements MemberTypeService {
 
     /**
      * @return Iterable MemberType object
-     * @should get all the bulletins
+     * @should invoke findAll method of member type repository
+     * @should return what member type repository returns
      */
     @Override
     public Iterable<MemberType> getMemberTypes() {
@@ -29,7 +32,8 @@ public class MemberTypeServiceImpl implements MemberTypeService {
     /**
      * @param id of the member type
      * @return MemberType object with the given id
-     * @should get the member type with given id
+     * @should invoke findOne method of member type repository with given id
+     * @should return what member type repository returns
      */
     @Override
     public MemberType getMemberType(short id) {
@@ -38,7 +42,7 @@ public class MemberTypeServiceImpl implements MemberTypeService {
 
     /**
      * @param memberType to be saved
-     * @should save the given member type to the database
+     * @should invoke save method of member type repository
      */
     @Override
     public void saveMemberType(MemberType memberType) {
@@ -47,15 +51,18 @@ public class MemberTypeServiceImpl implements MemberTypeService {
 
     /**
      * @param id of the member type that will be deleted
-     * @should delete the member type with given id
+     * @throws RuntimeException if pre-defined member type is trying to be deleted
+     * @should invoke delete method of member type repository with given id if member type is not pre-defined
      */
     @Override
     public void deleteMemberType(short id) {
         MemberType memberType = memberTypeRepository.findOne(id);
+        if (memberType == null)
+            throw new EntityNotFoundException("Böyle bir üye tipi bulunamadı.");
         if (!(memberType.getName().equals("ROLE_ADMIN") || memberType.getName().equals("ROLE_STOCKER")
                 || memberType.getName().equals("ROLE_SELLER") || memberType.getName().equals("ROLE_MEMBER")))
             memberTypeRepository.delete(id);
         else
-            throw new RuntimeException("You can't delete this member type!: " + memberType.getName());
+            throw new RuntimeException("Bu üye tipi silinemez!: " + memberType.getName());
     }
 }
