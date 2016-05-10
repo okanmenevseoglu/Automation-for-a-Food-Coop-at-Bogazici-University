@@ -19,7 +19,8 @@ public class PostTypeServiceImpl implements PostTypeService {
 
     /**
      * @return Iterable PostType object
-     * @should get all the post types
+     * @should invoke findAll method of post type repository
+     * @should return what post type repository returns
      */
     @Override
     public Iterable<PostType> getPostTypes() {
@@ -29,7 +30,8 @@ public class PostTypeServiceImpl implements PostTypeService {
     /**
      * @param id of the post type
      * @return PostType object with the given id
-     * @should get the post type with given id
+     * @should invoke findOne method of post type repository with given id
+     * @should return what post type repository returns
      */
     @Override
     public PostType getPostType(short id) {
@@ -38,7 +40,7 @@ public class PostTypeServiceImpl implements PostTypeService {
 
     /**
      * @param postType to be saved
-     * @should save the given post type to the database
+     * @should invoke save method of post type repository
      */
     @Override
     public void savePostType(PostType postType) {
@@ -47,7 +49,7 @@ public class PostTypeServiceImpl implements PostTypeService {
 
     /**
      * @param id of the post type that will be deleted
-     * @should delete the post type with given id
+     * @should invoke delete method of post type repository with given id
      */
     @Override
     public void deletePostType(short id) {
