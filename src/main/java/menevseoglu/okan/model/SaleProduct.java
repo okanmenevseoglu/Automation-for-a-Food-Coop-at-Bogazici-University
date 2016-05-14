@@ -6,18 +6,18 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * Entity representation of the sold_product table that stores the information of a product that is sold in a sale.
+ * Entity representation of the sale_product table that stores the information of a product that is sale in a sale.
  */
 @Data
 @Entity
-public class SoldProduct {
+public class SaleProduct {
 
     @Id
     @GeneratedValue
     private int id;
 
     @Column(nullable = false)
-    private short soldAmount;
+    private short saleAmount;
 
     @ManyToOne(optional = false)
     private Product product;
