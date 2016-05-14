@@ -1,9 +1,7 @@
 package menevseoglu.okan.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -35,7 +33,7 @@ public class Post {
     @Column(nullable = false)
     private Timestamp dateOfCreation;
 
-    private Date dateOfOccurence;
+    private Date dateOfOccurrence;
 
     @ManyToOne(optional = false)
     private Member member;
@@ -43,7 +41,6 @@ public class Post {
     @ManyToOne(optional = false)
     private PostType postType;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "post")
     private List<Photo> photoList;
 }
