@@ -1,6 +1,6 @@
 package menevseoglu.okan.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -47,11 +47,11 @@ public class Producer {
     @Column(columnDefinition = "FLOAT(10,6)")
     private float longitude;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "producer")
-    private List<Product> productList;
-
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToMany(mappedBy = "producer")
     private List<Photo> photoList;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @OneToMany(mappedBy = "producer")
+    private List<Product> productList;
 }
