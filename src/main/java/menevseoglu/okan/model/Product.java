@@ -1,6 +1,7 @@
 package menevseoglu.okan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -38,16 +39,18 @@ public class Product {
     private float starRate;
 
     @ManyToOne(optional = false)
-    private Producer producer;
-
-    @ManyToOne(optional = false)
     private UnitType unitType;
 
     @ManyToOne(optional = false)
     private PackageType packageType;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private ProductCategory productCategory;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(optional = false)
+    private Producer producer;
 
     @OneToMany(mappedBy = "product")
     private List<Photo> photoList;
