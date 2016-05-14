@@ -23,7 +23,7 @@ public class WorkController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Work getWork(@PathVariable("id") short id) {
+    public Work getWork(@PathVariable("id") int id) {
         return workService.getWork(id);
     }
 
@@ -33,12 +33,12 @@ public class WorkController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public void updateWork(@PathVariable("id") short id, @RequestBody Work newWork) {
+    public void updateWork(@PathVariable("id") int id, @RequestBody Work newWork) {
         workService.updateWork(id, newWork);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void deleteWork(@PathVariable("id") short id) {
+    public void deleteWork(@PathVariable("id") int id) {
         workService.deleteWork(id);
     }
 }
