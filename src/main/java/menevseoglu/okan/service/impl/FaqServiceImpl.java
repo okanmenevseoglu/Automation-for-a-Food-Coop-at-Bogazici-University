@@ -19,7 +19,8 @@ public class FaqServiceImpl implements FaqService {
 
     /**
      * @return Iterable Faq object
-     * @should get all the faqs
+     * @should invoke findAll method of faq repository
+     * @should return what faq repository returns
      */
     @Override
     public Iterable<Faq> getFaqs() {
@@ -29,7 +30,8 @@ public class FaqServiceImpl implements FaqService {
     /**
      * @param id of the faq
      * @return Faq object with the given id
-     * @should get the faq with given id
+     * @should invoke findOne method of faq repository with given id
+     * @should return what faq repository returns
      */
     @Override
     public Faq getFaq(short id) {
@@ -38,7 +40,7 @@ public class FaqServiceImpl implements FaqService {
 
     /**
      * @param faq to be saved
-     * @should save the given faq to the database
+     * @should invoke save method of faq repository
      */
     @Override
     public void saveFaq(Faq faq) {
@@ -47,8 +49,9 @@ public class FaqServiceImpl implements FaqService {
 
     /**
      * @param id     of the faq that will be updated
-     * @param newFaq to represent new values
-     * @should update the faq with given id
+     * @param newFaq to represent updated values
+     * @should invoke save method of faq repository with given id and new faq data
+     * @should invoke save method of faq repository even if at least one data is null
      */
     @Override
     public void updateFaq(short id, Faq newFaq) {
@@ -62,7 +65,7 @@ public class FaqServiceImpl implements FaqService {
 
     /**
      * @param id of the faq that will be deleted
-     * @should delete the faq with given id
+     * @should invoke delete method of faq repository with given id
      */
     @Override
     public void deleteFaq(short id) {
