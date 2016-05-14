@@ -1,7 +1,6 @@
 package menevseoglu.okan.repository;
 
 import menevseoglu.okan.model.Work;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
