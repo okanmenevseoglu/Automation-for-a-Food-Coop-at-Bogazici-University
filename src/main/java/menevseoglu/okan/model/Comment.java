@@ -40,11 +40,4 @@ public class Comment {
     @JsonIgnore
     @ManyToOne(optional = false)
     private Product product;
-
-    @JsonIgnore
-    @ManyToOne
-    private Comment parentComment;
-
-    @OneToMany(mappedBy = "parentComment")
-    private List<Comment> childrenComment;
 }
