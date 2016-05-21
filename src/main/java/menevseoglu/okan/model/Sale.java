@@ -44,5 +44,5 @@ public class Sale {
     private Member member;
 
     @OneToMany(mappedBy = "sale")
-    private List<SoldProduct> soldProductList;
+    private List<SaleProduct> saleProductList;
 }
