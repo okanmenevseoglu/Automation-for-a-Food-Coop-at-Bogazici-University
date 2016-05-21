@@ -25,8 +25,6 @@ import java.util.List;
 @Entity
 public class Member implements UserDetails {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue
     private int id;
