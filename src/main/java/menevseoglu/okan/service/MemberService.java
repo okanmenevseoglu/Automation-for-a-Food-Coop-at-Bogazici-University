@@ -1,6 +1,7 @@
 package menevseoglu.okan.service;
 
 import menevseoglu.okan.model.Member;
+import menevseoglu.okan.request.LoginRequest;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -8,20 +9,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface MemberService extends UserDetailsService {
 
-    Member findById(int id);
+    Iterable<Member> getMembers();
 
-    Member findByEmail(String email);
+    Member getMemberById(int id);
 
-
-    void addNewMember(Member member);
-
-    Iterable<Member> findAllMembers();
+    Member getMemberByEmail(String email);
 
     long countMembers();
 
     boolean isExists(int id);
 
-    void deleteByEmail(String email);
+    boolean isValidUser(String email, String password);
 
-    void delete(int id);
+    void addMember(Member member);
+
+    void deleteMemberById(int id);
+
+    void deleteMemberByEmail(String email);
+
+    void updateMember(int id, Member newBulletin);
+
+    Member loginMember(LoginRequest request);
 }
