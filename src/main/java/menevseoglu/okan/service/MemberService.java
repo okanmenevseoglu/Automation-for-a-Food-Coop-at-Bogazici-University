@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * Created by okanm on 20.04.2016.
  */
 public interface MemberService extends UserDetailsService {
-
     Iterable<Member> getMembers();
 
     Member getMemberById(int id);

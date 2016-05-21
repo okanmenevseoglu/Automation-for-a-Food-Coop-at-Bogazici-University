@@ -3,7 +3,7 @@ package menevseoglu.okan.request;
 import lombok.Data;
 
 /**
- * Created by Okan Men on 19.05.2016.
+ * This class is used for login requests.
  */
 @Data
 public class LoginRequest {

@@ -32,8 +32,6 @@ public class MemberController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void addNewMemberType(@RequestBody Member member) {
-        System.out.println("test");
-        System.out.println(member.toString());
         memberService.addMember(member);
     }
 
