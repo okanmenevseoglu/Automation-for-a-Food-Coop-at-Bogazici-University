@@ -2,10 +2,17 @@ package menevseoglu.okan.service.impl;
 
 import menevseoglu.okan.model.Member;
 import menevseoglu.okan.repository.MemberRepository;
+import menevseoglu.okan.request.LoginRequest;
 import menevseoglu.okan.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,24 +26,25 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     MemberRepository memberRepository;
 
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
-    public Member findById(int id) {
+    public Iterable<Member> getMembers() {
+        return memberRepository.findAll();
+    }
+
+    @Override
+    public Member getMemberById(int id) {
         return memberRepository.findOne(id);
     }
 
     @Override
-    public Member findByEmail(String email) {
+    public Member getMemberByEmail(String email) {
         return memberRepository.findByEmail(email);
-    }
-
-    @Override
-    public void addNewMember(Member member) {
-        memberRepository.save(member);
-    }
-
-    @Override
-    public Iterable<Member> findAllMembers() {
-        return memberRepository.findAll();
     }
 
     @Override
@@ -49,19 +57,54 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.exists(id);
     }
 
-
     @Override
-    public void deleteByEmail(String email) {
-        memberRepository.deleteByEmail(email);
+    public boolean isValidUser(String email, String password) {
+        Member member = memberRepository.findByEmail(email);
+        return (member != null && member.getPassword().equals(password));
     }
 
     @Override
-    public void delete(int id) {
+    public void addMember(Member member) {
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+        memberRepository.save(member);
+    }
+
+    @Override
+    public void updateMember(int id, Member newMember) {
+        Member oldMember = memberRepository.findOne(id);
+        if (newMember.getFirstName() != null)
+            oldMember.setFirstName(newMember.getFirstName());
+        if (newMember.getLastName() != null)
+            oldMember.setLastName(newMember.getFirstName());
+
+        memberRepository.save(newMember);
+    }
+
+    @Override
+    public Member loginMember(LoginRequest request) {
+        String email = request.getName();
+        String password = request.getPassword();
+
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return this.getMemberByEmail(email);
+    }
+
+    @Override
+    public void deleteMemberById(int id) {
         memberRepository.delete(id);
     }
 
     @Override
+    public void deleteMemberByEmail(String email) {
+        memberRepository.deleteByEmail(email);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+        return memberRepository.findByEmail(s);
     }
 }
+

@@ -1,43 +1,57 @@
 package menevseoglu.okan.controller;
 
-
-import menevseoglu.okan.exception.MemberNotFoundException;
 import menevseoglu.okan.model.Member;
+import menevseoglu.okan.request.LoginRequest;
 import menevseoglu.okan.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 /**
- * Created by okanm on 25.03.2016.
+ * Controller class that handles request and response methods of the member operations.
  */
 @RestController
+@RequestMapping(value = "/members")
 public class MemberController {
 
     @Autowired
     MemberService memberService;
 
-    @RequestMapping(value = "/members", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public Iterable<Member> getMembers() {
-        return memberService.findAllMembers();
+        return memberService.getMembers();
     }
 
-    @RequestMapping(value = "/members/{memberID}", method = RequestMethod.GET)
-    public Member getMember(@PathVariable("memberID") int memberID) {
-        Member member = memberService.findById(memberID);
-        if (member == null) throw new MemberNotFoundException();
-        return member;
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Member getMember(@PathVariable("id") int id) {
+        return memberService.getMemberById(id);
     }
 
-    @RequestMapping(value = "/members/register", method = RequestMethod.POST)
-    public void addNewMemberType(@Valid @RequestBody Member member) {
-        System.out.println(member.toString());
-        memberService.addNewMember(member);
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public void addNewMemberType(@RequestBody Member member) {
+        memberService.addMember(member);
     }
 
-    @RequestMapping(value = "/members/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public void updateMember(@PathVariable("id") int id, @RequestBody Member newBulletin) {
+        memberService.updateMember(id, newBulletin);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Member login(@RequestBody LoginRequest request) {
+        return memberService.loginMember(request);
+    }
+
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    public Principal authenticate(Principal user) {
+        return user;
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteBulletin(@Valid @PathVariable("id") short id) {
-        memberService.delete(id);
+        memberService.deleteMemberById(id);
     }
 }
