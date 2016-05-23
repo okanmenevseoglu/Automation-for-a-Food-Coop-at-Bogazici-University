@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PostTypeRepository extends CrudRepository<PostType, Short> {
+    PostType findOneByName(String name);
 }

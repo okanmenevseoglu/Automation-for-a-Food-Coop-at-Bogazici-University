@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MemberRepository extends CrudRepository<Member, Integer> {
-    Member findByEmail(String email);
+
+    Member findOneByEmail(String email);
 
     void deleteByEmail(String email);
 }

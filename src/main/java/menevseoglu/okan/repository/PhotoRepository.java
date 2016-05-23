@@ -9,4 +9,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PhotoRepository extends CrudRepository<Photo, Integer> {
+    Iterable<Photo> findAllByMemberId(int id);
+
+    Iterable<Photo> findAllByProductId(short id);
+
+    Iterable<Photo> findAllByProducerId(short id);
+
+    Iterable<Photo> findAllByPostId(int id);
 }
