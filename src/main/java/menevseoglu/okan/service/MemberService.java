@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface MemberService extends UserDetailsService {
     Iterable<Member> getMembers();
 
-    Member getMemberById(int id);
+    Member getMember(int id);
 
     Member getMemberByEmail(String email);
 
@@ -27,6 +27,4 @@ public interface MemberService extends UserDetailsService {
     void deleteMemberByEmail(String email);
 
     void updateMember(int id, Member newBulletin);
-
-    Member loginMember(LoginRequest request);
 }

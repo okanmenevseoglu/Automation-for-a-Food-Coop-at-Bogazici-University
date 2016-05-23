@@ -11,6 +11,8 @@ public interface PostService {
 
     Post getPost(int id);
 
+    Iterable<Post> getPostsByPostTypeName(String name);
+
     void savePost(Post post);
 
     void updatePost(int id, Post newPost);

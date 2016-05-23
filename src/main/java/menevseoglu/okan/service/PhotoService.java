@@ -9,6 +9,14 @@ public interface PhotoService {
 
     Iterable<Photo> getPhotos();
 
+    Iterable<Photo> getPhotosByMemberId(int id);
+
+    Iterable<Photo> getPhotosByProductId(short id);
+
+    Iterable<Photo> getPhotosByProducerId(short id);
+
+    Iterable<Photo> getPhotosByPostId(int id);
+
     Photo getPhoto(int id);
 
     void savePhoto(Photo photo);

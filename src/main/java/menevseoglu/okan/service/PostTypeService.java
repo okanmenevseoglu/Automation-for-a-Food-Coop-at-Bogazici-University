@@ -11,6 +11,8 @@ public interface PostTypeService {
 
     PostType getPostType(short id);
 
+    PostType getPostTypeByName(String name);
+
     void savePostType(PostType postType);
 
     void deletePostType(short id);
