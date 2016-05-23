@@ -20,10 +20,9 @@ public class StarRating {
     private float starRate;
 
     @JsonIgnore
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Product product;
 
-    @JsonIgnore
     @ManyToOne(optional = false)
     private Member member;
 }

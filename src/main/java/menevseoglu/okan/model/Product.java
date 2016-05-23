@@ -25,7 +25,6 @@ public class Product {
 
     private String description;
 
-    @NotBlank
     @Column(nullable = false)
     private float price;
 
@@ -33,10 +32,10 @@ public class Product {
     private int stock;
 
     @Column(nullable = false)
-    private int unit;
+    private float starRate;
 
     @Column(nullable = false)
-    private float starRate;
+    private int unit;
 
     @ManyToOne(optional = false)
     private UnitType unitType;
@@ -44,7 +43,7 @@ public class Product {
     @ManyToOne(optional = false)
     private PackageType packageType;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(optional = false)
     private ProductCategory productCategory;
 
