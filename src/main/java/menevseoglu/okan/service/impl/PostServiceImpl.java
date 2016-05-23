@@ -38,6 +38,11 @@ public class PostServiceImpl implements PostService {
         return postRepository.findOne(id);
     }
 
+    @Override
+    public Iterable<Post> getPostsByPostTypeName(String name) {
+        return postRepository.findAllByPostTypeName(name);
+    }
+
     /**
      * @param post to be saved
      * @should invoke save method of post repository

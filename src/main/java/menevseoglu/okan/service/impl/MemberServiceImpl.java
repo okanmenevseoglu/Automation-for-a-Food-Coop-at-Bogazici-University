@@ -2,14 +2,8 @@ package menevseoglu.okan.service.impl;
 
 import menevseoglu.okan.model.Member;
 import menevseoglu.okan.repository.MemberRepository;
-import menevseoglu.okan.request.LoginRequest;
 import menevseoglu.okan.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,9 +21,6 @@ public class MemberServiceImpl implements MemberService {
     MemberRepository memberRepository;
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -38,13 +29,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member getMemberById(int id) {
+    public Member getMember(int id) {
         return memberRepository.findOne(id);
     }
 
     @Override
     public Member getMemberByEmail(String email) {
-        return memberRepository.findByEmail(email);
+        return memberRepository.findOneByEmail(email);
     }
 
     @Override
@@ -59,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean isValidUser(String email, String password) {
-        Member member = memberRepository.findByEmail(email);
+        Member member = memberRepository.findOneByEmail(email);
         return (member != null && member.getPassword().equals(password));
     }
 
@@ -81,18 +72,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member loginMember(LoginRequest request) {
-        String email = request.getName();
-        String password = request.getPassword();
-
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return this.getMemberByEmail(email);
-    }
-
-    @Override
     public void deleteMemberById(int id) {
         memberRepository.delete(id);
     }
@@ -103,8 +82,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return memberRepository.findByEmail(s);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return memberRepository.findOneByEmail(email);
     }
 }
 

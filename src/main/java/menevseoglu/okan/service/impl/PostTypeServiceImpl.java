@@ -5,13 +5,11 @@ import menevseoglu.okan.repository.PostTypeRepository;
 import menevseoglu.okan.service.PostTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * This class is the business layer of the post type operations.
  */
 @Service
-@Transactional
 public class PostTypeServiceImpl implements PostTypeService {
 
     @Autowired
@@ -36,6 +34,11 @@ public class PostTypeServiceImpl implements PostTypeService {
     @Override
     public PostType getPostType(short id) {
         return postTypeRepository.findOne(id);
+    }
+
+    @Override
+    public PostType getPostTypeByName(String name) {
+        return postTypeRepository.findOneByName(name);
     }
 
     /**

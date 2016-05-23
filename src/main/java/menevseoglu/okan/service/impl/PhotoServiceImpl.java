@@ -27,6 +27,26 @@ public class PhotoServiceImpl implements PhotoService {
         return photoRepository.findAll();
     }
 
+    @Override
+    public Iterable<Photo> getPhotosByMemberId(int id) {
+        return photoRepository.findAllByMemberId(id);
+    }
+
+    @Override
+    public Iterable<Photo> getPhotosByProductId(short id) {
+        return photoRepository.findAllByProductId(id);
+    }
+
+    @Override
+    public Iterable<Photo> getPhotosByProducerId(short id) {
+        return photoRepository.findAllByProducerId(id);
+    }
+
+    @Override
+    public Iterable<Photo> getPhotosByPostId(int id) {
+        return photoRepository.findAllByPostId(id);
+    }
+
     /**
      * @param id of the photo
      * @return Photo object with the given id
