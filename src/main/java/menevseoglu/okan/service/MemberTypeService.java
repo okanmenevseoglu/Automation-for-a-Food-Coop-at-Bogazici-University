@@ -11,6 +11,8 @@ public interface MemberTypeService {
 
     MemberType getMemberType(short id);
 
+    MemberType getMemberTypeByName(String name);
+
     void saveMemberType(MemberType memberType);
 
     void deleteMemberType(short id);

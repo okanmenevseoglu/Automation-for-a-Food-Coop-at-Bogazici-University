@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MemberTypeRepository extends CrudRepository<MemberType, Short> {
+    MemberType findOneByName(String name);
 }

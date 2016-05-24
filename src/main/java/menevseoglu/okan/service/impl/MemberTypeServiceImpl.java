@@ -40,6 +40,11 @@ public class MemberTypeServiceImpl implements MemberTypeService {
         return memberTypeRepository.findOne(id);
     }
 
+    @Override
+    public MemberType getMemberTypeByName(String name) {
+        return memberTypeRepository.findOneByName(name);
+    }
+
     /**
      * @param memberType to be saved
      * @should invoke save method of member type repository
