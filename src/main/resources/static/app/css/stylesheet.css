@@ -198,13 +198,32 @@
     border: dotted black;
     border-radius: 2em;
     margin-bottom: 6em;
-    text-align: justify;
+    text-align: center;
+}
+
+#productPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: center;
 }
 
 #productForm {
     border: dotted black;
     border-radius: 2em;
     margin-bottom: 6em;
+}
+
+#productBox {
+    border: double green;
+}
+
+#productInfo {
+    display: inline-block;
+}
+
+#productImage {
+    display: inline-block;
 }
 
 #producerBox {

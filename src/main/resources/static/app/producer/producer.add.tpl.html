@@ -49,6 +49,12 @@
         </fieldset>
 
         <fieldset class="form-group">
+            <label for="inputPhotoUrl">Üretici Fotoğrafı (Opsiyonel. Lütfen link olarak giriniz.)</label>
+            <input type="text" name="inputPhotoUrl" id="inputPhotoUrl" class="form-control"
+                   ng-model="producerData.photoUrl" placeholder="Link"/>
+        </fieldset>
+
+        <fieldset class="form-group">
             <label for="inputCity">Şehir *</label>
             <select id="inputCity" name="inputCity" class="form-control" ng-model="producerData.city" required>
                 <option value="İstanbul">İstanbul</option>

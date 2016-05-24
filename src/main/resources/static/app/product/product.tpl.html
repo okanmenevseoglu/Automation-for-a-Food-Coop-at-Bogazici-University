@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div id="productPage" class="jumbotron">
+    <h1><b>{{product.name}}</b></h1>
+    <hr/>
+    <div class="container">
+        <div id="productImage">
+            <img ng-if="product.photoUrl == null" src="/media/photo/no_product_img.png">
+            <img ng-if="product.photoUrl != null" src="{{product.photoUrl}}" width="400" height="400">
+        </div>
+        <div id="productInfo" class="container">
+            <h4><b>Ürün Bilgileri</b></h4>
+            <hr/>
+            <div><h3><b>Fiyat: </b>{{product.price}} / TL</h3></div>
+            <div><h4><b>Birimi: </b>{{product.unit}} {{product.unitType.name}}</h4></div>
+            <div><h4><b>Paketleme Türü: </b>{{product.packageType.name}}</h4></div>
+            <div><h4><b>Stok: </b>{{product.stock}} {{product.unitType.name}}</h4></div>
+        </div>
+    </div>
+</div>

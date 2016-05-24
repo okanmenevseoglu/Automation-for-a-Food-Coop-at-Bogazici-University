@@ -1,10 +1,33 @@
-<div id="productsPage" class="jumbotron" ng-controller="ProductCtrl">
+<div id="productsPage" class="jumbotron">
     <h1>Ürünler</h1>
-    <a class="btn btn-primary" ng-if='!auth' ui-sref="products/add"><h4>Yeni Ürün Ekle</h4></a>
+    <a class="btn btn-primary" ng-if='!authenticated' ui-sref="products/add">
+        <h4>Yeni Ürün Ekle</h4>
+    </a>
     <hr/>
     <div class="container">
         <div ng-repeat="product in products">
-
+            <div id="productBox" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-apple"></span>
+                            <a ui-sref="product" id="productLink" ng-click="setProductId(product.id)">
+                                <b>Ürün Adı:</b> {{product.name}}
+                            </a>
+                            <button type="button" class="btn btn-primary" ng-click="deleteProduct(product.id)"
+                                    ng-if='memberType === "ROLE_ADMIN" || memberType === "ROLE_STOCKER"'>Sil <span
+                                    class="glyphicon glyphicon-erase"></span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseText" class="panel-collapse collapse in">
+                        <img ng-if="product.photoUrl == null" src="/media/photo/no_product_img.png">
+                        <img src="{{product.photoUrl}}">
+                        <br/>
+                        <h4>Ürün Fiyatı: {{product.price}} / TL</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

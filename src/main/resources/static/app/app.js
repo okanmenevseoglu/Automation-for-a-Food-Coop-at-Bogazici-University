@@ -15,8 +15,7 @@ var app = angular.module('app', [
     'ngFileUpload',
     'ui.router',
     'ui-notification',
-    'ngCookies',
-    'mwl.calendar'
+    'ngCookies'
 ]);
 
 

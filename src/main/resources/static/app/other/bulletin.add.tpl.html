@@ -9,14 +9,14 @@
         </fieldset>
 
         <fieldset class="form-group">
-            <label for="inputBulletinFile">Dosya seçiniz (.pdf )</label>
-            <input type="file" id="inputBulletinFile" class="file file-loading" accept=".pdf"
-                   ng-model="bulletinData.file">
+            <label for="inputBulletinFile">Bülten Linki Giriniz</label>
+            <input type="text" id="inputBulletinFile" class="form-control" ng-model="bulletinData.url">
         </fieldset>
 
         <fieldset class="form-group">
             <label for="inputBulletinDate">Bülten Tarihi Seçiniz</label><br>
-            <input type="date" name="inputBulletinDate" id="inputBulletinDate" class="form-control" min="2000-01-01" max="2099-12-31"
+            <input type="date" name="inputBulletinDate" id="inputBulletinDate" class="form-control" min="2000-01-01"
+                   max="2099-12-31"
                    ng-model="bulletinData.date" required>
         </fieldset>
 

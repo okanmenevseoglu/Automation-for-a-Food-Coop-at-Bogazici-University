@@ -2,8 +2,9 @@
     <h2 ng-if="producer.firstName != null"><b>{{producer.firstName}} {{producer.lastName}}</b></h2>
     <h2 ng-if="producer.companyName != null"><b>{{producer.companyName}}</b></h2>
     <div class="container">
-        <h4><b>Üretici Fotoğrafları</b></h4>
-        ---
+        <h4><b>Üretici Fotoğrafı</b></h4>
+        <img ng-if="producer.photoUrl == null" src="/media/photo/no_product_img.png">
+        <img ng-if="producer.photoUrl != null" src="{{product.photoUrl}}" width="400" height="400">
         <h4><b>Üretici Bilgisi</b></h4>
         <div>{{producer.description}}</div>
 

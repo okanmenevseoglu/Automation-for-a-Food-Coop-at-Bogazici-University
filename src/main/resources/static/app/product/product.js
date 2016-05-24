@@ -79,7 +79,16 @@ product.service('ProductService', ['$http', 'baseUrl', function ($http, baseUrl)
     };
 }]);
 
-product.controller('ProductCtrl', ['$scope', '$timeout', 'ProductService', 'Notification', function ($scope, $timeout, ProductService, Notification) {
+product.controller('ProductCtrl', ['$scope', '$rootScope', '$cookies', '$timeout', 'ProductService', 'Notification', function ($scope, $rootScope, $cookies, $timeout, ProductService, Notification) {
+    $scope.memberType = $cookies.get("memberType");
+
+    // Get Producers
+    $scope.products = {};
+
+    ProductService.getProducts()
+        .then(function (response) {
+            $scope.products = response.data;
+        });
 
     // Products Data
     $scope.productData = {
@@ -87,6 +96,7 @@ product.controller('ProductCtrl', ['$scope', '$timeout', 'ProductService', 'Noti
         description: null,
         price: 0,
         stock: 0,
+        photoUrl: null,
         starRate: 0,
         unit: 0,
         unitType: null,
@@ -127,14 +137,38 @@ product.controller('ProductCtrl', ['$scope', '$timeout', 'ProductService', 'Noti
         if (valid) {
             ProductService.addProduct($scope.productData)
                 .success(function () {
-                    Notification.success("Kayıt Başarılı!");
+                    Notification.success("Ürün Eklendi!");
                     $timeout(function () {
                         window.location.reload()
-                    }, 1000);
+                    }, 500);
                 })
                 .error(function () {
-                    Notification.error("Kayıt Başarısız!");
+                    Notification.error("Ürün Eklenemedi!");
                 });
         }
+    };
+
+    $scope.setProductId = function (productId) {
+        $rootScope.productId = productId;
+    };
+
+    if ($rootScope.productId != undefined)
+        ProductService.getProduct($rootScope.productId)
+            .then(function (response) {
+                $scope.product = response.data;
+            });
+
+    // Delete Product
+    $scope.deleteProduct = function (producerId) {
+        ProductService.deleteProduct(producerId)
+            .success(function () {
+                Notification.success("Silme Başarılı!");
+                $timeout(function () {
+                    window.location.reload()
+                }, 500);
+            })
+            .error(function () {
+                Notification.error("Silme Başarısız!");
+            });
     };
 }]);

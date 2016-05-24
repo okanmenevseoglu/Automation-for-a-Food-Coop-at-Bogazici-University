@@ -108,7 +108,8 @@ other.controller('BulletinCtrl', ['$scope', '$cookies', '$timeout', 'BulletinSer
     // Add Bulletin
     $scope.bulletinData = {
         name: null,
-        date: null
+        date: null,
+        url: null
     };
 
     $scope.submitBulletinForm = function (valid) {
@@ -121,7 +122,7 @@ other.controller('BulletinCtrl', ['$scope', '$cookies', '$timeout', 'BulletinSer
                     }, 500);
                 })
                 .error(function () {
-                    Notification.success("Kayıt Başarısız!");
+                    Notification.error("Kayıt Başarısız!");
                 });
         }
     };

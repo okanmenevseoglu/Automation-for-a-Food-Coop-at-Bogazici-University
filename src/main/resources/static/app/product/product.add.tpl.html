@@ -12,6 +12,12 @@
         </fieldset>
 
         <fieldset class="form-group">
+            <label for="inputPhotoUrl">Ürün Fotoğrafı (Opsiyonel. Lütfen link olarak giriniz.)</label>
+            <input type="text" name="inputPhotoUrl" id="inputPhotoUrl" class="form-control"
+                   ng-model="productData.photoUrl" placeholder="Link"/>
+        </fieldset>
+
+        <fieldset class="form-group">
             <label for="inputProductDescription">Ürün Tanımı</label>
             <textarea name="inputProductDescription" id="inputProductDescription" class="form-control"
                       ng-model="productData.description" placeholder="Ürün Tanımı"></textarea>
