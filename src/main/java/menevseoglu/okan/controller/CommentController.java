@@ -23,6 +23,11 @@ public class CommentController {
         return commentService.getComments();
     }
 
+    @RequestMapping(value = "/getAllByProductId/{id}", method = RequestMethod.GET)
+    public Iterable<Comment> getCommentsByProductId(@RequestParam("id") short id) {
+        return commentService.getCommentsByProductId(id);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Comment getComment(@PathVariable("id") int id) {
         return commentService.getComment(id);

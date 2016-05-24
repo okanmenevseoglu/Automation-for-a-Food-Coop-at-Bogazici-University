@@ -58,6 +58,9 @@ public class Member implements UserDetails {
     @Column(nullable = false)
     private String address;
 
+    @Column(columnDefinition = "VARCHAR(2083)")
+    private String photoUrl;
+
     @NotBlank
     @Column(nullable = false)
     private String city;

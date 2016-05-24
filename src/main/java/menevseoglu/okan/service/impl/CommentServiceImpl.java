@@ -27,6 +27,11 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findAll();
     }
 
+    @Override
+    public Iterable<Comment> getCommentsByProductId(short id) {
+        return commentRepository.findAllByProductId(id);
+    }
+
     /**
      * @param id of the comment
      * @return Comment object with the given id

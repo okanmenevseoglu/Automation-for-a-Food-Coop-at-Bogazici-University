@@ -9,6 +9,8 @@ public interface CommentService {
 
     Iterable<Comment> getComments();
 
+    Iterable<Comment> getCommentsByProductId(short id);
+
     Comment getComment(int id);
 
     void saveComment(Comment comment);

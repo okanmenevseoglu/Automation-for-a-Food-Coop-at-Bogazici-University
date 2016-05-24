@@ -28,7 +28,6 @@ public class PostTypeController {
         return postTypeService.getPostType(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/getByName/{name}", method = RequestMethod.GET)
     public PostType getPostType(@PathVariable("name") String name) {
         return postTypeService.getPostTypeByName(name);
