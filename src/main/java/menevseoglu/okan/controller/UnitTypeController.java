@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.UnitType;
 import menevseoglu.okan.service.UnitTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +28,13 @@ public class UnitTypeController {
         return unitTypeService.getUnitType(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addUnitType(@Valid @RequestBody UnitType unitType) {
         unitTypeService.saveUnitType(unitType);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteUnitType(@PathVariable("id") short id) {
         unitTypeService.deleteUnitType(id);

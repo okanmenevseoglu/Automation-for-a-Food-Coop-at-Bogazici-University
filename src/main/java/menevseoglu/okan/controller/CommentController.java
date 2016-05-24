@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.Comment;
 import menevseoglu.okan.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,16 +28,19 @@ public class CommentController {
         return commentService.getComment(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MEMBER')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addComment(@Valid @RequestBody Comment comment) {
         commentService.saveComment(comment);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public void updateComment(@PathVariable("id") int id, @RequestBody Comment newComment) {
         commentService.updateComment(id, newComment);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteComment(@PathVariable("id") int id) {
         commentService.deleteComment(id);

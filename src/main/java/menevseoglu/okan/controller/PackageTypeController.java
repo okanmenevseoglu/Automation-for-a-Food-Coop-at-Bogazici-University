@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.PackageType;
 import menevseoglu.okan.service.PackageTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +28,13 @@ public class PackageTypeController {
         return packageTypeService.getPackageType(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addPackageType(@Valid @RequestBody PackageType packageType) {
         packageTypeService.savePackageType(packageType);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deletePackageType(@PathVariable("id") short id) {
         packageTypeService.deletePackageType(id);

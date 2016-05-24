@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.Producer;
 import menevseoglu.okan.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,16 +28,19 @@ public class ProducerController {
         return producerService.getProducer(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addProducer(@Valid @RequestBody Producer producer) {
         producerService.saveProducer(producer);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public void updateProducer(@PathVariable("id") short id, @RequestBody Producer newProducer) {
         producerService.updateProducer(id, newProducer);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteProducer(@PathVariable("id") short id) {
         producerService.deleteProducer(id);

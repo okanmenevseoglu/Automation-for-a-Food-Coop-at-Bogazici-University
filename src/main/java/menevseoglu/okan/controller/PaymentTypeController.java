@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.PaymentType;
 import menevseoglu.okan.service.PaymentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +28,13 @@ public class PaymentTypeController {
         return paymentTypeService.getPaymentType(id);
     }
 
-    @RequestMapping(value = "/addPaymentType", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SELLER')")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void savePaymentType(@Valid @RequestBody PaymentType paymentType) {
         paymentTypeService.savePaymentType(paymentType);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'SELLER')")
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public void deletePaymentType(@PathVariable("id") short id) {
         paymentTypeService.deletePaymentType(id);

@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.PostType;
 import menevseoglu.okan.service.PostTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +28,19 @@ public class PostTypeController {
         return postTypeService.getPostType(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(value = "/getByName/{name}", method = RequestMethod.GET)
+    public PostType getPostType(@PathVariable("name") String name) {
+        return postTypeService.getPostTypeByName(name);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addPostType(@Valid @RequestBody PostType postType) {
         postTypeService.savePostType(postType);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deletePostType(@PathVariable("id") short id) {
         postTypeService.deletePostType(id);

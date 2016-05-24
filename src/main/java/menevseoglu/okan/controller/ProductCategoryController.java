@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.ProductCategory;
 import menevseoglu.okan.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,26 +33,31 @@ public class ProductCategoryController {
         return productCategoryService.getProductCategory(name);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addProductCategory(@Valid @RequestBody ProductCategory productCategory) {
         productCategoryService.saveProductCategory(productCategory);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/update/byId/{id}", method = RequestMethod.PUT)
     public void updateProductCategory(@PathVariable("id") short id, @RequestBody ProductCategory newProductCategory) {
         productCategoryService.updateProductCategory(id, newProductCategory);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/update/byName/{name}", method = RequestMethod.PUT)
     public void updateProductCategory(@PathVariable("name") String name, @RequestBody ProductCategory newProductCategory) {
         productCategoryService.updateProductCategory(name, newProductCategory);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/delete/byId/{id}", method = RequestMethod.DELETE)
     public void deleteProductCategory(@PathVariable("id") short id) {
         productCategoryService.deleteProductCategory(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'STOCKER')")
     @RequestMapping(value = "/delete/byName/{name}", method = RequestMethod.DELETE)
     public void deleteProductCategory(@PathVariable("name") String name) {
         productCategoryService.deleteProductCategory(name);

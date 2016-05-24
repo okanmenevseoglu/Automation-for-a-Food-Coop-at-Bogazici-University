@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.WorkType;
 import menevseoglu.okan.service.WorkTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +28,13 @@ public class WorkTypeController {
         return workTypeService.getWorkType(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addWorkType(@Valid @RequestBody WorkType workType) {
         workTypeService.saveWorkType(workType);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteWorkType(@PathVariable("id") short id) {
         workTypeService.deleteWorkType(id);

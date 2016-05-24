@@ -3,6 +3,7 @@ package menevseoglu.okan.controller;
 import menevseoglu.okan.model.MemberType;
 import menevseoglu.okan.service.MemberTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +28,19 @@ public class MemberTypeController {
         return memberTypeService.getMemberType(id);
     }
 
-    @RequestMapping(value = "/addMemberType", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(value = "/byName/{name}", method = RequestMethod.GET)
+    public MemberType getMemberType(@PathVariable("name") String name) {
+        return memberTypeService.getMemberTypeByName(name);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void saveMemberType(@Valid @RequestBody MemberType memberType) {
         memberTypeService.saveMemberType(memberType);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public void deleteMemberType(@PathVariable("id") short id) {
         memberTypeService.deleteMemberType(id);
