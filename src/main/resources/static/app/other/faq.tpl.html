@@ -1,0 +1,41 @@
+<div id="faqPage" class="jumbotron">
+    <h1>Sıkça Sorulan Sorular</h1>
+    <a class="btn btn-primary" ng-if='memberType === "ROLE_ADMIN"' ui-sref="faqs/add"><h4>Yeni Sıkça Sorulan Soru Ekle</h4></a>
+    <hr/>
+    <div class="container">
+        <div ng-repeat="faq in faqs | orderBy: 'question'">
+            <div id="faqBox" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                            <i><b>{{faq.question}}</b></i>
+                            <button type="button" class="btn btn-primary" ng-click="deleteFaqData(faq.id)"
+                                    ng-if='memberType === "ROLE_ADMIN"'>Sil <span class="glyphicon glyphicon-erase"></span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="panel-collapse">
+                        <div class="panel-body">{{faq.answer}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><h2 ng-if="faqs == '' || faqs == null">Henüz bir soru eklenmemiştir.</h2></div>
+    </div>
+    <div class="container panel-group">
+        <div id="faqNotFound" class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <h3><span class="glyphicon glyphicon-arrow-right"></span> <b>Aradığınızı bulamadınız mı?</b></h3>
+                    <div class="panel panel-body"><h4> Aradığınızı bulamadıysanız, aklınızı kurcalayan farklı bir
+                        sorunuz varsa Baraka’ya bekleriz. Çaylarımızı yudumlarken sorularınızı cevaplamaya çalışırız.
+                        Eğer “ne yazık ki zamanım yok o nedenle teknolojiyi kullanmayı tercih ediyorum” diyorsanız, bize
+                        her zaman yazabilirsiniz.</h4>
+                        <a class="btn btn-primary" href="mailto:koop@boun.edu.tr"><h4>Soru Gönder</h4></a>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>

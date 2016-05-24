@@ -1,0 +1,419 @@
+#bukoopBanner {
+    background-color: white;
+    display: inline;
+}
+
+#titleAndImage {
+    display: inline-block;
+    margin-left: 5%;
+}
+
+#bukoopTitle {
+    color: #2aabd2;
+    font-family: "Comic Sans MS";
+    display: inline-block;
+}
+
+#bukoopImage {
+    width: 7em;
+    height: 9.3em;
+    display: inline-block;
+}
+
+#search {
+    display: inline-block;
+    width: 38%;
+    min-width: 17em;
+    margin-left: 5%;
+}
+
+#bukoopSearch {
+    display: inline-block;
+    border: 2px solid green;
+    border-radius: 2em;
+}
+
+#buttons {
+    display: inline-block;
+    margin-left: 4%;
+}
+
+#volunteerButton {
+    margin-left: 0.8em;
+}
+
+#bukoopNavbar {
+    background-color: #2aabd2;
+    border: solid black;
+}
+
+#bukoopMenu {
+    color: black;
+}
+
+.panel-footer {
+    background-color: #262626;
+    color: white;
+    border-radius: 0;
+    font-family: "Comic Sans MS", sans-serif;
+    font-size: small;
+}
+
+.nav li a {
+    color: black !important;
+}
+
+.panel-footer {
+    background-color: #28a4c9 !important;
+    color: white !important;
+}
+
+.glyphicon-leaf {
+    color: green;
+}
+
+.glyphicon-globe {
+    color: green;
+}
+
+.glyphicon-question-sign {
+    color: green;
+}
+
+.glyphicon-calendar {
+    color: green;
+}
+
+.glyphicon-arrow-right {
+    color: green;
+}
+
+.glyphicon-king {
+    color: green;
+}
+
+/* Home Page */
+
+#homePage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: center;
+}
+
+#homeVideo {
+    border: solid black;
+    border-radius: 0.5em;
+}
+
+/* Admin Pages */
+
+#adminPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#membersPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#memberTypesPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#packageTypesPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#paymentTypesPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#productCategoriesPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#unitTypesPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#workTypesPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+/* Authentication Pages */
+
+#howToRegisterPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#howToRegisterText {
+    font-size: 19px;
+}
+
+#registrationForm {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#loginForm {
+    border: dotted black;
+    border-radius: 2em;
+    max-width: 45em;
+    margin-bottom: 6em;
+}
+
+#loginQuestions {
+    text-decoration: underline;
+}
+
+/* Product and Producer Pages */
+
+#productsPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#productForm {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#producerBox {
+    border: double green;
+}
+
+#producerLink {
+    text-decoration: #0f0f0f;
+}
+
+#producersPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#producerPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#producerForm {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#addProducerMap {
+    flex: 0 0 50%;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    width: 40em;
+    height: 25em;
+    border: groove;
+}
+
+#viewProducerMap {
+    flex: 0 0 50%;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    width: 40em;
+    height: 25em;
+    border: groove;
+}
+
+/* Bulletins Page */
+
+#bulletinList {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#addBulletinPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#bulletinName {
+    display: inline-block;
+}
+
+/* Volunteer Work Page */
+
+#worksPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#worksBox {
+    border: double green;
+}
+
+#workForm {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+/* Post Pages */
+
+#eventsPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#eventsAddPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#eventsBox {
+    border: double green;
+}
+
+#newsPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#newsAddPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#newsBox {
+    border: double green;
+}
+
+#writingsPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#writingsAddPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#writingBox {
+    border: double green;
+}
+
+/* Faqs Page */
+
+#faqPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+#faqBox {
+    border: double green;
+}
+
+#faqNotFound {
+    text-align: justify;
+    border: double green;
+    margin-bottom: 6em;
+}
+
+#faqAddPage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: justify;
+}
+
+/* About Us Page */
+
+#aboutUsPage {
+    text-align: justify;
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+/* Contact Page */
+
+#contactPage {
+    text-align: justify;
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+}
+
+#contactWrapper {
+    display: flex;
+}
+
+#contactAddress {
+    flex: 1;
+}
+
+#contactMap {
+    flex: 0 0 50%;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    width: 40em;
+    height: 25em;
+    border: groove;
+}
+
+/* Profile Page */
+
+#profilePage {
+    border: dotted black;
+    border-radius: 2em;
+    margin-bottom: 6em;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+<div id="profilePage" class="jumbotron">
+    <h1>Profil Sayfası</h1>
+    <hr/>
+    <div class="container">
+        <img src="/media/photo/no-profile-pic.jpg" width="300px" height="200px">
+    </div>
+    <div>
+        <div>
+            <b>Adı Soyadı: </b>{{loggedMember.firstName}} {{loggedMember.lastName}}<br/>
+            <b>Email Adresi: </b>{{loggedMember.email}}<br/>
+            <b>Cinsiyeti: </b>{{loggedMember.gender}}<br/>
+            <b>T.C. Kimlik No: </b>{{loggedMember.idNumber}}<br/>
+            <b>Adresi: </b>{{loggedMember.address}}<br/>
+            <b>Şehir: </b>{{loggedMember.city}}<br/>
+            <b>Posta Kodu: </b>{{loggedMember.postalCode}}<br/>
+            <b>Telefon No: </b>{{loggedMember.phoneNumber}}<br/>
+            <b>Hakkında: </b>{{loggedMember.aboutMember}}<br/>
+            <b>Kayıt Tarihi: </b>{{loggedMember.registerTime | date: 'dd/MM/yyyy'}}<br/>
+        </div>
+    </div>
+</div>

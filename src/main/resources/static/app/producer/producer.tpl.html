@@ -1,0 +1,20 @@
+<div id="producerPage" class="jumbotron">
+    <h2 ng-if="producer.firstName != null"><b>{{producer.firstName}} {{producer.lastName}}</b></h2>
+    <h2 ng-if="producer.companyName != null"><b>{{producer.companyName}}</b></h2>
+    <div class="container">
+        <h4><b>Üretici Fotoğrafları</b></h4>
+        ---
+        <h4><b>Üretici Bilgisi</b></h4>
+        <div>{{producer.description}}</div>
+
+        <h4><b>İletişim</b></h4>
+        <div>{{producer.phone}}</div>
+        <div>{{producer.email}}</div>
+        <div>{{producer.address}}</div>
+        <h4><b>Üretici Lokasyonu</b></h4>
+        <div id="viewProducerMap">{{viewMap(producer.latitude, producer.longitude)}}</div>
+
+        <h4><b>Kooperatifteki Ürünleri</b></h4>
+        <div>{{producer.productList}}</div>
+    </div>
+</div>

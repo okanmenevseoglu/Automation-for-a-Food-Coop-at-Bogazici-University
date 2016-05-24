@@ -1,0 +1,38 @@
+<div id="workForm" class="jumbotron">
+
+    <form name="workForm" ng-submit="submitWorkForm(workForm.$valid)" novalidate>
+
+        <h1>İş Ekle</h1>
+        <h4>(*'lı alanları doldurmak zorunludur.)</h4>
+        <hr/>
+
+        <fieldset class="form-group">
+            <label for="inputWorkType">İş Türü *</label>
+            <br/>
+            <select class="form-control" id="inputWorkType" name="inputWorkType" ng-model="workData.workType.id"
+                    required>
+                <option ng-if="workTypes == null || workTypes == ''">İş Türü Bulunamadı. Önce İş Türü Ekleyiniz.
+                </option>
+                <option ng-repeat="workType in workTypes" value="{{workType.id}}">{{workType.name}}</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputWorkDate">İş Tarihi</label>
+            <input type="date" name="inputWorkDate" id="inputWorkDate" class="form-control" ng-model="workData.dateOfWork"
+                   required>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputWorkDescription">İş Detayı</label>
+            <textarea name="inputWorkDescription" id="inputWorkDescription" class="form-control"
+                      ng-model="workData.description" placeholder="İş Detayı"></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="workSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!workForm.$valid"><span class="glyphicon glyphicon-send"></span> Kaydet
+            </button>
+        </fieldset>
+    </form>
+</div>

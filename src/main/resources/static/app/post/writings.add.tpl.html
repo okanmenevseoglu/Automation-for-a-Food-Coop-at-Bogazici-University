@@ -1,0 +1,29 @@
+<div id="writingsAddPage" class="jumbotron" ng-controller="WritingsCtrl">
+
+    <form name="writingForm" ng-submit="submitWritingForm(writingForm.$valid, postTypeData.id)" novalidate>
+
+        <h1>Yazı Ekle</h1>
+        <hr/>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': writingForm.inputWritingTitle.$invalid && !writingForm.inputWritingTitle.$untouched}">
+            <label for="inputWritingTitle">Başlık</label>
+            <input type="text" name="inputWritingTitle" id="inputWritingTitle" class="form-control"
+                   ng-model="writingData.title" placeholder="Başlık" required/>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': writingForm.inputWritingContent.$invalid && !writingForm.inputWritingContent.$untouched}">
+            <label for="inputWritingContent">Yazı</label>
+            <textarea name="inputWritingContent" id="inputWritingContent" class="form-control"
+                      ng-model="writingData.content" placeholder="Yazı" required></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="writingSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!writingForm.$valid">
+                <span class="glyphicon glyphicon-send"></span> Kaydet
+            </button>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,98 @@
+<div id="productForm" class="jumbotron">
+
+    <form name="productForm" ng-submit="submitProductForm(productForm.$valid)" novalidate>
+        <h1>Ürün Ekle</h1>
+        <h4>(*'lı alanları doldurmak zorunludur.)</h4>
+        <br/>
+
+        <fieldset class="form-group">
+            <label for="inputProductName">Ürün Adı *</label>
+            <input type="text" name="inputProductName" id="inputProductName" class="form-control"
+                   ng-model="productData.name" placeholder="Ürün Adı" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProductDescription">Ürün Tanımı</label>
+            <textarea name="inputProductDescription" id="inputProductDescription" class="form-control"
+                      ng-model="productData.description" placeholder="Ürün Tanımı"></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProductPrice">Ürün Fiyatı (TL) *</label>
+            <input type="number" name="inputProductPrice" id="inputProductPrice" class="form-control"
+                   ng-model="productData.price" placeholder="0" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputStockQuantity">Ürün Stoku *</label>
+            <input type="number" name="inputStockQuantity" id="inputStockQuantity" class="form-control"
+                   ng-model="productData.stock" placeholder="0" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProductUnit">Ürün Birimi *</label>
+            <input type="number" name="inputProductUnit" id="inputProductUnit" class="form-control"
+                   ng-model="productData.unit" placeholder="0" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProductUnitType">Ürün Birim Türü *</label>
+            <br/>
+            <select class="form-control" id="inputProductUnitType" name="inputProductUnitType"
+                    ng-model="productData.unitType.id" required>
+                <option ng-if="unitTypes == null || unitTypes == ''">Ürün Birimi Bulunamadı. Önce ürün Birimi Ekleyiniz.
+                </option>
+                <option ng-repeat="unitType in unitTypes" value="{{unitType.id}}">{{unitType.name}}</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProductPackageType">Ürün Paketleme Türü *</label>
+            <br/>
+            <select class="form-control" id="inputProductPackageType" name="inputProductPackageType"
+                    ng-model="productData.packageType.id" required>
+                <option ng-if="packageTypes == null || packageTypes == ''">Paketleme Türü Bulunamadı. Önce Paketleme
+                    Türü Ekleyiniz.
+                </option>
+                <option ng-repeat="packageType in packageTypes" value="{{packageType.id}}"> {{packageType.name}}
+                </option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProductCategory">Ürün Kategorisi *</label>
+            <br/>
+            <select class="form-control" id="inputProductCategory" name="inputProductCategory"
+                    ng-model="productData.productCategory.id" required>
+                <option ng-if="productCategories == null || productCategories == ''">Ürün Kategorisi Bulunamadı. Önce
+                    Ürün Kategorisi Ekleyiniz.
+                </option>
+                <option ng-repeat="productCategory in productCategories" value="{{productCategory.id}}">
+                    {{productCategory.name}}
+                </option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputProducer">Üretici *</label>
+            <br/>
+            <select class="form-control" id="inputProducer" name="inputProducer" ng-model="productData.producer.id"
+                    required>
+                <option ng-if="producers == null || producers == ''">Üretici Bulunamadı. Önce Üretici Ekleyiniz.
+                </option>
+                <option ng-if="producer.firstName != null" ng-repeat="producer in producers"
+                        value="{{producer.id}}"> {{producer.firstName}} {{producer.lastName}}
+                </option>
+                <option ng-if="producer.firstName == null" ng-repeat="producer in producers"
+                        value="{{producer.id}}"> {{producer.companyName}}
+                </option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="productFormSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!productForm.$valid"><span class="glyphicon glyphicon-send"></span> Kaydı Tamamla
+            </button>
+        </fieldset>
+    </form>
+</div>

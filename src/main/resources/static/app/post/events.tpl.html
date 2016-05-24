@@ -1,0 +1,40 @@
+<div id="eventsPage" class="jumbotron" ng-controller="EventsCtrl">
+    <h1>Etkinlikler</h1>
+    <a class="btn btn-primary" ng-if='memberType === "ROLE_ADMIN"' ui-sref="events/add"><h4>Yeni Etkinlik Ekle</h4></a>
+    <hr/>
+    <div class="container">
+        <div ng-repeat="event in events | orderBy: '-dateOfCreation' | limitTo: paginationLimit()">
+            <div id="eventsBox" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <b>{{event.title}}</b> <b>(Etkinlik Tarihi: {{event.dateOfOccurrence |
+                            date:'dd/MM/yyyy'}})</b>
+                            <button type="button" class="btn btn-primary" ng-click="deleteEventData(event.id)"
+                                    ng-if='memberType === "ROLE_ADMIN"'>Sil <span
+                                    class="glyphicon glyphicon-erase"></span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseText" class="panel-collapse collapse in">
+                        <div class="panel-body"><span>{{event.content | limitTo: numLimit}}</span>
+                            <a href="" ng-show="!showDiv && event.content.length>750"
+                               ng-click="showDiv = true; readMore(event.content.length); ">devamını okuyayım...</a>
+                        </div>
+                        <div class="panel-footer">
+                            <div><b>Tarih: </b>{{event.dateOfCreation | date:'dd/MM/yyyy'}}</div>
+                            <div><b>Ekleyen: </b>{{event.member.firstName}} {{event.member.lastName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><h2 ng-if="events == '' || events == null">Henüz bir etkinlik eklenmemiştir.</h2></div>
+        <div>
+            <button class="btn btn-primary center-block" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">
+                Daha Fazlası
+            </button>
+        </div>
+    </div>
+</div>

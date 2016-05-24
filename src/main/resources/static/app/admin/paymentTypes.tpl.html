@@ -1,0 +1,39 @@
+<div id="paymentTypesPage" class="jumbotron">
+    <h1>Ödeme Türleri</h1>
+    <hr/>
+    <div><h2 ng-if="paymentTypes == '' || paymentTypes == null">Henüz bir ödeme türü eklenmemiştir.</h2></div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ödeme Türü</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="paymentType in paymentTypes">
+        <tr>
+            <td>{{paymentType.id}}</td>
+            <td>{{paymentType.name}}</td>
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" ng-click="deletePaymentType(paymentType.id)">Sil
+                    <span class="glyphicon glyphicon-erase"></span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <form name="paymentTypeForm" ng-submit="submitPaymentTypeForm(paymentTypeForm.$valid)" novalidate>
+        <fieldset>
+            <label for="inputPaymentType">Yeni Ürün Birimi</label>
+            <input type="text" name="inputPaymentType" id="inputPaymentType" class="form-control"
+                   ng-model="paymentTypeData.name"
+                   placeholder="Ürün Birimi" required/>
+        </fieldset>
+        <br/>
+        <fieldset class="form-group">
+            <button type="submit" id="paymentTypeSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!paymentTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
+            </button>
+        </fieldset>
+    </form>
+</div>

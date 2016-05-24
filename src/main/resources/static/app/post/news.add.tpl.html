@@ -1,0 +1,29 @@
+<div id="newsAddPage" class="jumbotron" ng-controller="NewsCtrl">
+
+    <form name="newsForm" ng-submit="submitNewsForm(newsForm.$valid, postTypeData.id)" novalidate>
+
+        <h1>Haber Ekle</h1>
+        <hr/>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': newsForm.inputNewsTitle.$invalid && !newsForm.inputNewsTitle.$untouched}">
+            <label for="inputNewsTitle">Başlık</label>
+            <input type="text" name="inputNewsTitle" id="inputNewsTitle" class="form-control"
+                   ng-model="newsData.title" placeholder="Başlık" required/>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': newsForm.inputNewsContent.$invalid && !newsForm.inputNewsContent.$untouched}">
+            <label for="inputNewsContent">Haber</label>
+            <textarea name="inputNewsContent" id="inputNewsContent" class="form-control"
+                      ng-model="newsData.content" placeholder="Haber" required></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="newsSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!newsForm.$valid">
+                <span class="glyphicon glyphicon-send"></span> Kaydet
+            </button>
+        </fieldset>
+    </form>
+</div>

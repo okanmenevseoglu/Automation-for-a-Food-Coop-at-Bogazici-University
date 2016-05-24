@@ -1,0 +1,40 @@
+<div id="membersPage" class="jumbotron">
+    <h1>Üye Listesi</h1>
+    <hr/>
+    <div><h2 ng-if="members == '' || members == null">Henüz bir üye eklenmemiştir.</h2></div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Email Adresi</th>
+            <th>Cinsiyet</th>
+            <th>T.C. Kimlik No</th>
+            <th>Adres</th>
+            <th>Şehir</th>
+            <th>Posta Kodu</th>
+            <th>Telefon No</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="member in members">
+        <tr>
+            <td>{{member.id}}</td>
+            <td>{{member.firstName}}</td>
+            <td>{{member.lastName}}</td>
+            <td>{{member.email}}</td>
+            <td>{{member.gender}}</td>
+            <td>{{member.idNumber}}</td>
+            <td>{{member.address}}</td>
+            <td>{{member.city}}</td>
+            <td>{{member.postalCode}}</td>
+            <td>{{member.phoneNumber}}</td>
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" ng-click="deleteMember(member.id)">Sil <span
+                        class="glyphicon glyphicon-erase"></span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

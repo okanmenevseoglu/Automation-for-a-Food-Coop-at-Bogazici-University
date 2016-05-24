@@ -1,0 +1,29 @@
+<div id="addBulletinPage" class="jumbotron">
+    <form name="bulletinForm" ng-submit="submitBulletinForm(bulletinForm.$valid)" novalidate>
+        <h1>Bülten Ekle</h1>
+
+        <fieldset class="form-group">
+            <label for="inputBulletinName">Bülten İsmi</label>
+            <input type="text" name="inputBulletinName" id="inputBulletinName" class="form-control"
+                   ng-model="bulletinData.name" placeholder="Bülten İsmi" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputBulletinFile">Dosya seçiniz (.pdf )</label>
+            <input type="file" id="inputBulletinFile" class="file file-loading" accept=".pdf"
+                   ng-model="bulletinData.file">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputBulletinDate">Bülten Tarihi Seçiniz</label><br>
+            <input type="date" name="inputBulletinDate" id="inputBulletinDate" class="form-control" min="2000-01-01" max="2099-12-31"
+                   ng-model="bulletinData.date" required>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="bulletinSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!bulletinForm.$valid"><span class="glyphicon glyphicon-send"></span> Kaydet
+            </button>
+        </fieldset>
+    </form>
+</div>

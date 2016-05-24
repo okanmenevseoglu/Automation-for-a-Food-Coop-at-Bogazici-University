@@ -1,0 +1,37 @@
+{
+  "name": "swe573",
+  "description": "Bogazici University Cooperative Website Project",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "website",
+    "angularjs",
+    "boun",
+    "cooperative"
+  ],
+  "authors": [
+    "Okan Menevseoglu"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/okanmenevseoglu",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.5",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.1",
+    "angular-ui-router": "^0.2.18",
+    "angular-ui-notification": "^0.2.0",
+    "ng-file-upload": "^12.0.4",
+    "google-map": "GoogleWebComponents/google-map#^1.1.10",
+    "google-maps": "^3.2.1",
+    "angular-bootstrap-calendar": "^0.20.0",
+    "angular-cookies": "^1.5.5"
+  },
+  "devDependencies": {}
+}

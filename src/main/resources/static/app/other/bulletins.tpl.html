@@ -1,0 +1,18 @@
+<div id="bulletinList" class="jumbotron">
+    <h1>Bültenler</h1>
+    <a class="btn btn-primary" ng-if='memberType === "ROLE_ADMIN"' ui-sref="bulletins/add"><h4>Yeni Bülten Ekle</h4></a>
+    <hr/>
+    <div class="container">
+        <div ng-repeat="bulletin in bulletins | orderBy: 'name'">
+            <div id="bulletinLink">
+                <a href="{{bulletin.url}}"><h2 id="bulletinName">{{bulletin.name}}</h2></a>
+                <button type="button" class="btn btn-primary" ng-click="deleteBulletinData(bulletin.id)"
+                        ng-if='memberType === "ROLE_ADMIN"'>Sil <span class="glyphicon glyphicon-erase"></span></button>
+            </div>
+            <div id="bulletinDate">({{bulletin.date | date:'MM/yyyy'}})</div>
+        </div>
+        <div>
+            <h2 ng-if="bulletins == '' || bulletins == null">Henüz bir bülten eklenmemiştir.</h2>
+        </div>
+    </div>
+</div>

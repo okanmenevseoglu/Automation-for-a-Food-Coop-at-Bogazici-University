@@ -1,0 +1,39 @@
+<div id="newsPage" class="jumbotron">
+    <h1>Haberler</h1>
+    <a class="btn btn-primary" ng-if='memberType === "ROLE_ADMIN"' ui-sref="news/add"><h4>Yeni Haber Ekle</h4></a>
+    <hr/>
+    <div class="container">
+        <div ng-repeat="new in news | orderBy: '-dateOfCreation' | limitTo: paginationLimit()">
+            <div id="newsBox" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-globe"></span>
+                            <b>{{new.title}}</b>
+                            <button type="button" class="btn btn-primary" ng-click="deleteNewsData(new.id)"
+                                    ng-if='memberType === "ROLE_ADMIN"'>Sil <span
+                                    class="glyphicon glyphicon-erase"></span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseText" class="panel-collapse collapse in">
+                        <div class="panel-body"><span>{{new.content | limitTo: numLimit}}</span>
+                            <a href="" ng-show="!showDiv && new.content.length>750"
+                               ng-click="showDiv = true; readMore(new.content.length); ">devamını okuyayım...</a>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div><b>Tarih: </b>{{new.dateOfCreation | date:'dd/MM/yyyy'}}</div>
+                        <div><b>Ekleyen: </b>{{new.member.firstName}} {{new.member.lastName}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><h2 ng-if="news == '' || news == null">Henüz bir haber eklenmemiştir.</h2></div>
+        <div>
+            <button class="btn btn-primary center-block" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Daha
+                Fazlası
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div id="faqAddPage" class="jumbotron">
+    <form name="faqForm" ng-submit="submitFaqForm(faqForm.$valid)" novalidate>
+        <h1>Sıkça Sorulan Soru Ekle</h1>
+        <hr/>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': faqForm.inputFaqQuestion.$invalid && !faqForm.inputFaqQuestion.$untouched}">
+            <label for="inputFaqQuestion">Soru</label>
+            <input type="text" name="inputFaqQuestion" id="inputFaqQuestion" class="form-control"
+                   ng-model="faqData.question" placeholder="Soru?" required/>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': faqForm.inputFaqAnswer.$invalid && !faqForm.inputFaqAnswer.$untouched}">
+            <label for="inputFaqAnswer">Cevap</label>
+            <textarea type="" name="inputFaqAnswer" id="inputFaqAnswer" class="form-control" ng-model="faqData.answer"
+                      placeholder="Cevap" required></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="faqSubmit" class="btn btn-primary center-block"
+                    ng-disabled="!faqForm.$valid">
+                <span class="glyphicon glyphicon-send"></span> Kaydet
+            </button>
+        </fieldset>
+    </form>
+</div>

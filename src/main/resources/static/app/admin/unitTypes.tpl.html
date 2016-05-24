@@ -1,0 +1,38 @@
+<div id="unitTypesPage" class="jumbotron">
+    <h1>Ürün Birimleri</h1>
+    <hr/>
+    <div><h2 ng-if="unitTypes == '' || unitTypes == null">Henüz bir ürün birimi eklenmemiştir.</h2></div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ürün Birimi</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="unitType in unitTypes | orderBy: 'id'">
+        <tr>
+            <td>{{unitType.id}}</td>
+            <td>{{unitType.name}}</td>
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" ng-click="deleteUnitType(unitType.id)">Sil <span
+                        class="glyphicon glyphicon-erase"></span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <form name="unitTypeForm" ng-submit="submitUnitTypeForm(unitTypeForm.$valid)" novalidate>
+        <fieldset>
+            <label for="inputUnitType">Yeni Ürün Birimi</label>
+            <input type="text" name="inputUnitType" id="inputUnitType" class="form-control" ng-model="unitTypeData.name"
+                   placeholder="Ürün Birimi" required/>
+        </fieldset>
+        <br/>
+        <fieldset class="form-group">
+            <button type="submit" id="unitTypeSubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!unitTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
+            </button>
+        </fieldset>
+    </form>
+</div>

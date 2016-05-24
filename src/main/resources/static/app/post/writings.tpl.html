@@ -1,0 +1,39 @@
+<div id="writingsPage" class="jumbotron">
+    <h1>Yazılar</h1>
+    <a class="btn btn-primary" ng-if='memberType === "ROLE_ADMIN"' ui-sref="writings/add"><h4>Yeni Yazı Ekle</h4></a>
+    <hr/>
+    <div class="container">
+        <div ng-repeat="writing in writings | orderBy: '-dateOfCreation' | limitTo: paginationLimit()">
+            <div id="writingBox" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-leaf"></span>
+                            <b>{{writing.title}}</b>
+                            <button type="button" class="btn btn-primary" ng-click="deleteWritingData(writing.id)"
+                                    ng-if='memberType === "ROLE_ADMIN"'>Sil <span
+                                    class="glyphicon glyphicon-erase"></span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseText" class="panel-collapse collapse in">
+                        <div class="panel-body"><span>{{writing.content | limitTo: numLimit}}</span>
+                            <a href="" ng-show="!showDiv && writing.content.length>750"
+                               ng-click="showDiv = true; readMore(writing.content.length); ">devamını okuyayım...</a>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div><b>Tarih:</b> {{writing.dateOfCreation | date:'dd/MM/yyyy'}}</div>
+                        <div><b>Ekleyen:</b> {{writing.member.firstName}} {{writing.member.lastName}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><h2 ng-if="writings == '' || writings == null">Henüz bir yazı eklenmemiştir.</h2></div>
+        <div>
+            <button class="btn btn-primary center-block" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Daha
+                Fazlası
+            </button>
+        </div>
+    </div>
+</div>

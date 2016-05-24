@@ -1,0 +1,10 @@
+<div id="productsPage" class="jumbotron" ng-controller="ProductCtrl">
+    <h1>Ürünler</h1>
+    <a class="btn btn-primary" ng-if='!auth' ui-sref="products/add"><h4>Yeni Ürün Ekle</h4></a>
+    <hr/>
+    <div class="container">
+        <div ng-repeat="product in products">
+
+        </div>
+    </div>
+</div>
