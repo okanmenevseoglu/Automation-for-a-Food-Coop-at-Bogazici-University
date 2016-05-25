@@ -1,38 +1,42 @@
 <div id="memberTypesPage" class="jumbotron">
     <h1>Üye Türleri</h1>
     <hr/>
-    <div><h2 ng-if="memberTypes == '' || memberTypes == null">Henüz bir üye türü eklenmemiştir.</h2></div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Üye Türü</th>
-        </tr>
-        </thead>
-        <tbody ng-repeat="memberType in memberTypes">
-        <tr>
-            <td>{{memberType.id}}</td>
-            <td>{{memberType.name}}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary" ng-click="deleteMemberType(memberType.id)">Sil
-                    <span class="glyphicon glyphicon-erase"></span>
+    <h2 ng-if="memberType !== 'ROLE_ADMIN'">Lütfen Admin girişi yapınız!</h2>
+    <div ng-if="memberType === 'ROLE_ADMIN'">
+        <div><h2 ng-if="memberTypes == '' || memberTypes == null">Henüz bir üye türü eklenmemiştir.</h2></div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Üye Türü</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="memberType in memberTypes">
+            <tr>
+                <td>{{memberType.id}}</td>
+                <td>{{memberType.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-primary" ng-click="deleteMemberType(memberType.id)">
+                        Sil
+                        <span class="glyphicon glyphicon-erase"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <form name="memberTypeForm" ng-submit="submitMemberTypeForm(memberTypeForm.$valid)" novalidate>
+            <fieldset>
+                <label for="inputMemberType">Yeni Ürün Birimi</label>
+                <input type="text" name="inputMemberType" id="inputMemberType" class="form-control"
+                       ng-model="memberTypeData.name" placeholder="Ürün Birimi" required/>
+            </fieldset>
+            <br/>
+            <fieldset class="form-group">
+                <button type="submit" id="memberTypeSubmit" class="btn btn-lg btn-primary center-block"
+                        ng-disabled="!memberTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
                 </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <hr/>
-    <form name="memberTypeForm" ng-submit="submitMemberTypeForm(memberTypeForm.$valid)" novalidate>
-        <fieldset>
-            <label for="inputMemberType">Yeni Ürün Birimi</label>
-            <input type="text" name="inputMemberType" id="inputMemberType" class="form-control"
-                   ng-model="memberTypeData.name" placeholder="Ürün Birimi" required/>
-        </fieldset>
-        <br/>
-        <fieldset class="form-group">
-            <button type="submit" id="memberTypeSubmit" class="btn btn-lg btn-primary center-block"
-                    ng-disabled="!memberTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
-            </button>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>

@@ -1,41 +1,47 @@
 <div id="productCategoriesPage" class="jumbotron">
     <h1>Ürün Kategorileri</h1>
     <hr/>
-    <div><h2 ng-if="productCategories == '' || productCategories == null">Henüz bir ürün kategorisi eklenmemiştir.</h2>
-    </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Ürün Kategorisi</th>
-        </tr>
-        </thead>
-        <tbody ng-repeat="productCategory in productCategories">
-        <tr>
-            <td>{{productCategory.id}}</td>
-            <td>{{productCategory.name}}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary"
-                        ng-click="deleteProductCategory(productCategory.id)">Sil <span
-                        class="glyphicon glyphicon-erase"></span>
+    <h2 ng-if="memberType !== 'ROLE_ADMIN' && memberType !== 'ROLE_STOCKER'">Lütfen Admin veya Stokçu girişi
+        yapınız!</h2>
+    <div ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_STOCKER'">
+        <div>
+            <h2 ng-if="productCategories == '' || productCategories == null">Henüz bir ürün kategorisi
+                eklenmemiştir.</h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ürün Kategorisi</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="productCategory in productCategories">
+            <tr>
+                <td>{{productCategory.id}}</td>
+                <td>{{productCategory.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-primary"
+                            ng-click="deleteProductCategory(productCategory.id)">Sil <span
+                            class="glyphicon glyphicon-erase"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <form name="productCategoryForm" ng-submit="submitProductCategoryForm(productCategoryForm.$valid)" novalidate>
+            <fieldset>
+                <label for="inputProductCategory">Yeni Ürün Kategorisi</label>
+                <input type="text" name="inputProductCategory" id="inputProductCategory" class="form-control"
+                       ng-model="productCategoryData.name"
+                       placeholder="Ürün Kategorisi" required/>
+            </fieldset>
+            <br/>
+            <fieldset class="form-group">
+                <button type="submit" id="productCategorySubmit" class="btn btn-lg btn-primary center-block"
+                        ng-disabled="!productCategoryForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
                 </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <hr/>
-    <form name="productCategoryForm" ng-submit="submitProductCategoryForm(productCategoryForm.$valid)" novalidate>
-        <fieldset>
-            <label for="inputProductCategory">Yeni Ürün Kategorisi</label>
-            <input type="text" name="inputProductCategory" id="inputProductCategory" class="form-control"
-                   ng-model="productCategoryData.name"
-                   placeholder="Ürün Kategorisi" required/>
-        </fieldset>
-        <br/>
-        <fieldset class="form-group">
-            <button type="submit" id="productCategorySubmit" class="btn btn-lg btn-primary center-block"
-                    ng-disabled="!productCategoryForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
-            </button>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>

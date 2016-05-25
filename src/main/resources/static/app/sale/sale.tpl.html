@@ -11,9 +11,8 @@
             <th>Ürün Adı</th>
             <th>Ürün Birimi</th>
             <th>Birim Fiyatı</th>
-            <th>İndirim</th>
             <th>Stok</th>
-            <th>Satılacak Adet</th>
+            <th>Satılacak Adet (Birim Cinsinden)</th>
         </tr>
         </thead>
         <tbody ng-repeat="product in products">
@@ -21,11 +20,7 @@
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
             <td>{{product.unit}} {{product.unitType.name}}</td>
-            <td>{{product.price}} / TL</td>
-            <td><select class="form-control">
-                <option>0</option>
-                <option>10%</option>
-            </select></td>
+            <td>{{product.price}} TL</td>
             <td>{{product.stock}}</td>
             <td><input type="text" class="form-control"></td>
             <td>

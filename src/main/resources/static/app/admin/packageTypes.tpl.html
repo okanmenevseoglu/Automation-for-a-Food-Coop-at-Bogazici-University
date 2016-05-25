@@ -1,38 +1,45 @@
 <div id="packageTypesPage" class="jumbotron">
     <h1>Paketleme Türleri</h1>
     <hr/>
-    <div><h2 ng-if="packageTypes == '' || packageTypes == null">Henüz bir paketleme türü eklenmemiştir.</h2></div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Paketleme Türü</th>
-        </tr>
-        </thead>
-        <tbody ng-repeat="packageType in packageTypes">
-        <tr>
-            <td>{{packageType.id}}</td>
-            <td>{{packageType.name}}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary" ng-click="deletePackageType(packageType.id)">Sil
-                    <span class="glyphicon glyphicon-erase"></span>
+    <h2 ng-if="memberType !== 'ROLE_ADMIN' && memberType !== 'ROLE_STOCKER'">Lütfen Admin veya Stokçu girişi
+        yapınız!</h2>
+    <div ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_STOCKER'">
+        <div>
+            <h2 ng-if="packageTypes == '' || packageTypes == null">Henüz bir paketleme türü eklenmemiştir.</h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Paketleme Türü</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="packageType in packageTypes">
+            <tr>
+                <td>{{packageType.id}}</td>
+                <td>{{packageType.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-primary"
+                            ng-click="deletePackageType(packageType.id)">Sil
+                        <span class="glyphicon glyphicon-erase"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <form name="packageTypeForm" ng-submit="submitPackageTypeForm(packageTypeForm.$valid)" novalidate>
+            <fieldset>
+                <label for="inputPackageType">Yeni Ürün Birimi</label>
+                <input type="text" name="inputPackageType" id="inputPackageType" class="form-control"
+                       ng-model="packageTypeData.name" placeholder="Ürün Birimi" required/>
+            </fieldset>
+            <br/>
+            <fieldset class="form-group">
+                <button type="submit" id="packageTypeSubmit" class="btn btn-lg btn-primary center-block"
+                        ng-disabled="!packageTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
                 </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <hr/>
-    <form name="packageTypeForm" ng-submit="submitPackageTypeForm(packageTypeForm.$valid)" novalidate>
-        <fieldset>
-            <label for="inputPackageType">Yeni Ürün Birimi</label>
-            <input type="text" name="inputPackageType" id="inputPackageType" class="form-control"
-                   ng-model="packageTypeData.name" placeholder="Ürün Birimi" required/>
-        </fieldset>
-        <br/>
-        <fieldset class="form-group">
-            <button type="submit" id="packageTypeSubmit" class="btn btn-lg btn-primary center-block"
-                    ng-disabled="!packageTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
-            </button>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>

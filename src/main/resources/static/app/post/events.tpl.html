@@ -1,6 +1,8 @@
-<div id="eventsPage" class="jumbotron" ng-controller="EventsCtrl">
+<div id="eventsPage" class="jumbotron">
     <h1>Etkinlikler</h1>
-    <a class="btn btn-primary" ng-if='memberType === "ROLE_MEMBER" || memberType === "ROLE_ADMIN"' ui-sref="events/add"><h4>Yeni Etkinlik Ekle</h4></a>
+    <a class="btn btn-primary" ng-if='memberType === "ROLE_MEMBER" || memberType === "ROLE_ADMIN"' ui-sref="events/add">
+        <h4>Yeni Etkinlik Ekle</h4>
+    </a>
     <hr/>
     <div class="container">
         <div ng-repeat="event in events | orderBy: '-dateOfCreation' | limitTo: paginationLimit()">

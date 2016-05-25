@@ -1,10 +1,7 @@
-<div id="eventsAddPage" class="jumbotron" ng-controller="EventsCtrl">
-
+<div id="eventsAddPage" class="jumbotron">
     <form name="eventsForm" ng-submit="submitEventsForm(eventsForm.$valid, postTypeData.id)" novalidate>
-
         <h1>Etkinlik Ekle</h1>
         <hr/>
-
         <fieldset class="form-group"
                   ng-class="{'has-error': eventsForm.inputEventTitle.$invalid && !eventsForm.inputEventTitle.$untouched}">
             <label for="inputEventTitle">Başlık</label>

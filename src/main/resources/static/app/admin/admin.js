@@ -89,7 +89,7 @@ admin.service('AdminService', ['$http', 'baseUrl', function ($http, baseUrl) {
     };
 
     this.deleteMember = function (memberId) {
-        return $http.delete(baseUrl + '/members/delete' + memberId);
+        return $http.delete(baseUrl + '/members/delete/' + memberId);
     };
 
     // Member Type Services
@@ -176,7 +176,8 @@ admin.service('AdminService', ['$http', 'baseUrl', function ($http, baseUrl) {
     };
 }]);
 
-admin.controller('AdminCtrl', ['$scope', '$timeout', 'AdminService', 'Notification', function ($scope, $timeout, AdminService, Notification) {
+admin.controller('AdminCtrl', ['$scope', '$cookies', '$timeout', 'AdminService', 'Notification', function ($scope, $cookies, $timeout, AdminService, Notification) {
+    $scope.memberType = $cookies.get("memberType");
 
     // Member Operations
     $scope.members = {};

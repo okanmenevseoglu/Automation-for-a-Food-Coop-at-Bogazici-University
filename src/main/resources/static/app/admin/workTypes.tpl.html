@@ -1,38 +1,45 @@
 <div id="workTypesPage" class="jumbotron">
     <h1>İş Tipleri</h1>
     <hr/>
-    <div><h2 ng-if="workTypes == '' || workTypes == null">Henüz bir iş tipi eklenmemiştir.</h2></div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>İş Tipi</th>
-        </tr>
-        </thead>
-        <tbody ng-repeat="workType in workTypes | orderBy:'id'">
-        <tr>
-            <td>{{workType.id}}</td>
-            <td>{{workType.name}}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary" ng-click="deleteWorkType(workType.id)">Sil <span
-                        class="glyphicon glyphicon-erase"></span>
+    <h2 ng-if="memberType !== 'ROLE_ADMIN'">Lütfen Admin girişi yapınız!</h2>
+    <div ng-if="memberType === 'ROLE_ADMIN'">
+        <div>
+            <h2 ng-if="workTypes == '' || workTypes == null">Henüz bir iş tipi eklenmemiştir.</h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>İş Tipi</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="workType in workTypes | orderBy:'id'">
+            <tr>
+                <td>{{workType.id}}</td>
+                <td>{{workType.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-primary" ng-click="deleteWorkType(workType.id)">
+                        Sil <span
+                            class="glyphicon glyphicon-erase"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <form name="workTypeForm" ng-submit="submitWorkTypeForm(workTypeForm.$valid)" novalidate>
+            <fieldset>
+                <label for="inputWorkType">Yeni İş Tipi</label>
+                <input type="text" name="inputWorkType" id="inputWorkType" class="form-control"
+                       ng-model="workTypeData.name"
+                       placeholder="İş Tipi" required/>
+            </fieldset>
+            <br/>
+            <fieldset class="form-group">
+                <button type="submit" id="workTypeSubmit" class="btn btn-lg btn-primary center-block"
+                        ng-disabled="!workTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
                 </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <hr/>
-    <form name="workTypeForm" ng-submit="submitWorkTypeForm(workTypeForm.$valid)" novalidate>
-        <fieldset>
-            <label for="inputWorkType">Yeni İş Tipi</label>
-            <input type="text" name="inputWorkType" id="inputWorkType" class="form-control" ng-model="workTypeData.name"
-                   placeholder="İş Tipi" required/>
-        </fieldset>
-        <br/>
-        <fieldset class="form-group">
-            <button type="submit" id="workTypeSubmit" class="btn btn-lg btn-primary center-block"
-                    ng-disabled="!workTypeForm.$valid"><span class="glyphicon glyphicon-plus"></span> Ekle
-            </button>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>

@@ -1,22 +1,41 @@
 <div id="adminPage" class="jumbotron">
     <h1>Admin Panel</h1>
     <hr/>
-    <div class="container">
+    <h2 ng-if="memberType !== 'ROLE_ADMIN' && memberType !== 'ROLE_STOCKER' && memberType !== 'ROLE_SELLER'">Lütfen
+        Admin girişi yapınız!</h2>
+    <div class="container"
+         ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_STOCKER' || memberType === 'ROLE_SELLER'">
         <h4>Satış İşlemleri</h4>
-        <button ui-sref="sale" class="btn btn-primary btn-block">Satış</button>
-        <button ui-sref="paymentTypes" class="btn btn-primary btn-block">Ödeme Türleri</button>
+        <button ui-sref="sale" class="btn btn-primary btn-block"
+                ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_SELLER'">Satış
+        </button>
+        <button ui-sref="paymentTypes" class="btn btn-primary btn-block"
+                ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_SELLER'">Ödeme Türleri
+        </button>
         <br/>
         <h4>Üye İşlemleri</h4>
-        <button ui-sref="register" class="btn btn-primary btn-block">Yeni Üye Ekleme</button>
-        <button ui-sref="members" class="btn btn-primary btn-block">Üye Listesi</button>
-        <button ui-sref="memberTypes" class="btn btn-primary btn-block">Üye Türleri</button>
+        <button ui-sref="register" class="btn btn-primary btn-block" ng-if="memberType === 'ROLE_ADMIN'">Yeni Üye
+            Ekleme
+        </button>
+        <button ui-sref="members" class="btn btn-primary btn-block" ng-if="memberType === 'ROLE_ADMIN'">Üye Listesi
+        </button>
+        <button ui-sref="memberTypes" class="btn btn-primary btn-block" ng-if="memberType === 'ROLE_ADMIN'">Üye
+            Türleri
+        </button>
         <br/>
         <h4><b>Ürün İşlemleri</b></h4>
-        <button ui-sref="productCategories" class="btn btn-primary btn-block">Ürün Kategorileri</button>
-        <button ui-sref="packageTypes" class="btn btn-primary btn-block">Paketleme Türleri</button>
-        <button ui-sref="unitTypes" class="btn btn-primary btn-block">Ürün Birimleri</button>
+        <button ui-sref="productCategories" class="btn btn-primary btn-block"
+                ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_STOCKER'">Ürün Kategorileri
+        </button>
+        <button ui-sref="packageTypes" class="btn btn-primary btn-block"
+                ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_STOCKER'">Paketleme Türleri
+        </button>
+        <button ui-sref="unitTypes" class="btn btn-primary btn-block"
+                ng-if="memberType === 'ROLE_ADMIN' || memberType === 'ROLE_STOCKER'">Ürün Birimleri
+        </button>
         <br/>
         <h4><b>Gönüllülük İşlemleri</b></h4>
-        <button ui-sref="workTypes" class="btn btn-primary btn-block">İş Tipleri</button>
+        <button ui-sref="workTypes" class="btn btn-primary btn-block" ng-if="memberType === 'ROLE_ADMIN'">İş Tipleri
+        </button>
     </div>
 </div>
