@@ -1,7 +1,6 @@
 <div id="loginForm" class="jumbotron container">
     <form ng-submit="onLogin()">
         <h1>Giriş Yap</h1>
-
         <fieldset class="form-group">
             <label for="inputEmail">E-mail Adresi</label>
             <input class="form-control" id="inputEmail" placeholder="kullanici@boun.edu.tr"
@@ -15,19 +14,13 @@
         </fieldset>
 
         <fieldset class="form-group">
-            <input type="checkbox" id="checkRememberMe">
-            <span>Beni hatırla</span>
-        </fieldset>
-
-        <fieldset class="form-group">
             <button id="registrationSubmit" type="submit" class="btn btn-lg btn-primary center-block">Giriş
             </button>
         </fieldset>
 
         <fieldset class="form-group" id="loginQuestions">
             <div align="right">
-                <a href="#"><h4>Şifremi unuttum</h4></a>
-                <a href="#"><h4>Nasıl gönüllü olurum?</h4></a>
+                <a ui-sref="howToRegister"><h4>Nasıl gönüllü olurum?</h4></a>
             </div>
         </fieldset>
     </form>
