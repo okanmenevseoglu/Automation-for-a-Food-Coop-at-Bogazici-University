@@ -12,7 +12,6 @@ var app = angular.module('app', [
     'app.product',
     'app.sale',
     'app.work',
-    'ngFileUpload',
     'ui.router',
     'ui-notification',
     'ngCookies'

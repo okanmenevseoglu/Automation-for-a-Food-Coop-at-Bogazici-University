@@ -1,10 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div id="salesPage" class="jumbotron">
+    <h1>Satış</h1>
+    <hr/>
+    <div><h2 ng-if="products == '' || products == null">Henüz bir ürün eklenmemiştir.</h2>
+    </div>
+    <h4><b>Ürünler</b></h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Birimi</th>
+            <th>Birim Fiyatı</th>
+            <th>İndirim</th>
+            <th>Stok</th>
+            <th>Satılacak Adet</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="product in products">
+        <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.unit}} {{product.unitType.name}}</td>
+            <td>{{product.price}} / TL</td>
+            <td><select class="form-control">
+                <option>0</option>
+                <option>10%</option>
+            </select></td>
+            <td>{{product.stock}}</td>
+            <td><input type="text" class="form-control"></td>
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" ng-click="addToChart(product.id)">Sepete Ekle <span
+                        class="glyphicon glyphicon-plus"></span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <h3>Satın Alacak Kişi Bilgileri</h3>
+    <form name="saleForm" ng-submit="completeSale(saleForm.$valid)" novalidate>
 
-</body>
-</html>
+        <fieldset class="form-group"
+                  ng-class="{'has-error': registerForm.inputFirstName.$invalid && !registerForm.inputFirstName.$untouched}">
+            <label for="inputFirstName">Adı *</label>
+            <input type="text" name="inputFirstName" id="inputFirstName" class="form-control"
+                   ng-model="memberData.firstName" placeholder="Adı" required/>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': registerForm.inputLastName.$invalid && !registerForm.inputLastName.$untouched}">
+            <label for="inputLastName">Soyadı *</label>
+            <input type="text" name="inputLastName" id="inputLastName" class="form-control"
+                   ng-model="memberData.lastName" placeholder="Soyadı" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputGenderMale">Cinsiyet *</label><br/>
+            <input type="radio" id="inputGenderMale" class="radio-inline" ng-model="memberData.gender" name="gender"
+                   value="E" required/> Erkek
+            <input type="radio" id="inputGenderFemale" class="radio-inline" ng-model="memberData.gender" name="gender"
+                   value="K"/> Kadın
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': registerForm.inputIdNumber.$invalid && !registerForm.inputIdNumber.$untouched}">
+            <label for="inputIdNumber">T.C. Kimlik No *</label>
+            <input type="text" name="inputIdNumber" id="inputIdNumber" class="form-control"
+                   ng-model="memberData.idNumber" placeholder="T.C. Kimlik No" required/>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error': registerForm.inputAddress.$invalid && !registerForm.inputAddress.$untouched}">
+            <label for="inputAddress">Adres *</label>
+            <input type="text" name="inputAddress" id="inputAddress" class="form-control"
+                   ng-model="memberData.address" placeholder="Adres" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputPostalCode">Posta Kodu</label>
+            <input id="inputPostalCode" class="form-control" ng-model="memberData.postalCode" placeholder="Posta Kodu"/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="inputPhone">Telefon No (Lütfen istenilen formatta giriniz: 555-555-5555) *</label>
+            <input type="text" id="inputPhone" class="form-control" ng-model="memberData.phoneNumber"
+                   placeholder="555-555-5555" maxlength="12" required/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <button type="submit" id="productCategorySubmit" class="btn btn-lg btn-primary center-block"
+                    ng-disabled="!saleForm.$valid"><span class="glyphicon glyphicon-send"></span> Tamamla
+            </button>
+        </fieldset>
+    </form>
+</div>
