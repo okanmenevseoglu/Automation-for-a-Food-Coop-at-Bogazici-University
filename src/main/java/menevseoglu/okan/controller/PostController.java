@@ -33,7 +33,7 @@ public class PostController {
         return postService.getPost(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MEMBER')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addPost(@Valid @RequestBody Post post) {
         postService.savePost(post);

@@ -28,7 +28,6 @@ public class MemberTypeController {
         return memberTypeService.getMemberType(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/byName/{name}", method = RequestMethod.GET)
     public MemberType getMemberType(@PathVariable("name") String name) {
         return memberTypeService.getMemberTypeByName(name);
